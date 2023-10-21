@@ -1,0 +1,164 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* padding: 20px; */
+}
+
+header {
+  border: 1px solid blue;
+  text-align: center;
+
+  margin-bottom: 20px;
+}
+
+main {
+  border: 1px solid green;
+  /* height: 100vh; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+footer {
+  border: 1px solid purple;
+  height: 40px;
+  padding-left: 20px;
+
+  display: flex;
+  align-items: center;
+}
+
+span {
+  display: inline-block;
+}
+
+hr {
+  margin: 10px 0 10px 0;
+}
+
+.calc-col {
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
+}
+
+/* .calc-main {
+} */
+
+/* #-GRID */
+.grid--2-cols {
+  /* border: 1px solid purple; */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* #-CARDS */
+.card {
+  border: 2px solid black;
+  max-width: 320px;
+  /* height: 500px; */
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: rgb(220, 230, 241);
+  text-align: center;
+  text-decoration: underline;
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+
+.card-body {
+  /* border: 2px solid green; */
+  padding: 16px;
+}
+
+/* .card-overall {
+} */
+
+/* #-Overall Card */
+.overall {
+  border: none;
+}
+
+.overall > div.card-body {
+  border: none;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.c1-overall-top,
+.c1-overall-bottom,
+.c2-overall-top,
+.c2-overall-bottom {
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* #-CELLS */
+.cell-full-text,
+.cell-full-empty,
+.cell-full-math,
+/* .sd, */
+.cell-1,
+.cell-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell-1,
+.cell-2,
+.cell-full-text {
+  border: 1px solid black;
+  /* padding: 4px; */
+  text-align: center;
+}
+
+.cell-full-text,
+.cell-full-math,
+.cell-full-empty,
+.sd {
+  grid-column: 1 / -1;
+}
+
+.cell-full-empty,
+.cell-full-math {
+  height: 16px;
+}
+
+.sd {
+  font-style: italic;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* #-INPUTS */
+.percent {
+  background-color: rgb(255, 255, 153);
+  border: none;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.result {
+  background-color: rgb(255, 204, 102);
+  font-weight: bold;
+}
+
+/* #-FONT STYLES */
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.underline {
+  text-decoration: underline;
+}

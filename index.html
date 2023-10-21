@@ -3,27 +3,196 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Online Sourdough Calculator</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Grid demo</title>
+    <link rel="stylesheet" href="css/general.css" />
+    <link rel="stylesheet" href="css/borders.css" />
+    <link rel="stylesheet" href="css/queries.css" />
   </head>
   <body>
     <header>
-      <h1>Demo Calculator</h1>
+      <h1>Grid demo</h1>
     </header>
 
     <main>
-      <article class="card">
-        <div class="row">
-          <div class="cell cell-1">
-            <p class="cell-content">Cell 1</p>
-          </div>
-          <div class="cell cell-2">
-            <p class="cell-content">Cell 2</p>
-          </div>
-        </div>
-      </article>
+      <div class="calc-col">
+        <section class="calc-main">
+          <!-- ############# -->
+          <!-- First article -->
+          <article class="card">
+            <div class="card-header">(1.3) Хлебна формула</div>
+
+            <div class="card-body">
+              <div class="grid--2-cols">
+                <div class="cell-full-text cell-single-bd-dsh-top bold italic">
+                  Квас
+                </div>
+                <div class="cell-1 c1-internal c1-bd-dsh-internal">
+                  Прфб., (%):
+                </div>
+                <div class="cell-2 c2-internal c2-bd-dsh-internal">
+                  <input
+                    type="number"
+                    name=""
+                    id=""
+                    class="percent"
+                    placeholder="... 8% ..."
+                  />
+                </div>
+                <div class="cell-1 c1-bottom c1-bd-dsh-bottom">h-кв, (%):</div>
+                <div class="cell-2 c2-bottom c2-bd-dsh-bottom">
+                  <input
+                    type="number"
+                    name=""
+                    id=""
+                    class="percent"
+                    placeholder="... 85% ..."
+                  />
+                </div>
+
+                <div class="cell-full-empty"></div>
+
+                <div class="cell-1 bold italic">Вода, (%):</div>
+                <div class="cell-2 c2-single">
+                  <input
+                    type="number"
+                    name=""
+                    id=""
+                    class="percent"
+                    placeholder="... 68% ..."
+                  />
+                </div>
+
+                <div class="cell-full-empty"></div>
+
+                <div class="cell-1 bold italic">Сол, (%):</div>
+                <div class="cell-2 c2-single">
+                  <input
+                    type="number"
+                    name=""
+                    id=""
+                    class="percent"
+                    placeholder="... 2.0% ..."
+                  />
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ############# -->
+          <!-- Second article -->
+          <article class="card">
+            <div class="card-header">(2.3) Количество тесто</div>
+
+            <div class="card-body">
+              <div class="grid--2-cols">
+                <div class="cell-1">Хлябове, (брой):</div>
+                <div class="cell-2 c2-single">
+                  <input
+                    type="number"
+                    name=""
+                    id=""
+                    class="percent"
+                    placeholder="... 3 ..."
+                  />
+                </div>
+                <div class="cell-full-math">x</div>
+                <div class="cell-1">Тегло на отделен хляб, (g):</div>
+                <div class="cell-2 c2-single">
+                  <input
+                    type="number"
+                    name=""
+                    id=""
+                    class="percent"
+                    placeholder="... 850 ..."
+                  />
+                </div>
+                <div class="cell-full-math">=</div>
+                <div class="cell-1">Количество тесто, (g):</div>
+                <div class="cell-2 c2-single result"><span>2550</span></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ############# -->
+          <!-- Third article -->
+          <article class="card">
+            <div class="card-header">(3.3) Изчислена формула</div>
+
+            <div class="card-body">
+              <div class="grid--2-cols">
+                <div class="cell-1 bold italic">Брашно, (g):</div>
+                <div class="cell-2 c2-single result"><span>1380</span></div>
+                <div class="cell-full-empty"></div>
+
+                <div class="cell-1 c1-bd-dsh-top bold italic">Квас, (g):</div>
+                <div class="cell-2 c2-single c2-bd-dsh-top result">
+                  <span>222</span>
+                </div>
+                <div class="sd cell-single-bd-dsh-internal">
+                  брашно (квас), (g): <span>120</span>
+                </div>
+                <div class="sd cell-single-bd-dsh-bottom">
+                  вода (квас), (g): <span>102</span>
+                </div>
+
+                <div class="cell-full-empty"></div>
+
+                <div class="cell-1 bold italic">Вода, (g):</div>
+                <div class="cell-2 c2-single result"><span>918</span></div>
+
+                <div class="cell-full-empty"></div>
+
+                <div class="cell-1 bold italic">Сол, (g):</div>
+                <div class="cell-2 c2-single result"><span>30</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card overall">
+            <div class="card-body">
+              <div class="grid--2-cols">
+                <div class="cell-1 c1-overall-top">Брашно - общо, (g):</div>
+                <div class="cell-2 c2-overall-top">
+                  <span>1500</span>
+                </div>
+                <div class="cell-1 c1-overall-bottom">Вода - обща, (g):</div>
+                <div class="cell-2 c2-overall-bottom">
+                  <span>1020</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <hr />
+        </section>
+      </div>
+
+      <div class="calc-col">
+        <section class="calc-additional">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure unde
+            molestias sequi ipsa vero aspernatur, hic sed ab incidunt
+            consequuntur cumque.
+          </p>
+          <hr />
+        </section>
+      </div>
+      <div class="calc-col">
+        <section class="calc-leaven-feed">
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio
+            et non molestias, quas eius magnam nostrum praesentium in quisquam,
+            rem iusto?
+          </p>
+          <hr />
+        </section>
+      </div>
     </main>
 
-    <footer></footer>
+    <footer>
+      <a href="https://nstratiev.github.io/test/"
+        >Online Sourdough Calculator - TEST</a
+      >
+    </footer>
   </body>
 </html>
