@@ -65,7 +65,7 @@ hr {
 
 .card-header {
   background-color: rgb(220, 230, 241);
-  text-align: center;
+  /* text-align: center; */
   text-decoration: underline;
   font-weight: bold;
   border-bottom: 1px solid black;
@@ -99,6 +99,7 @@ hr {
 }
 
 /* #-CELLS */
+.card-header,
 .cell-full-text,
 .cell-full-empty,
 .cell-full-math,
@@ -108,6 +109,7 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2px 0 2px 0;
 }
 
 .cell-1,
@@ -123,6 +125,7 @@ hr {
 .cell-full-empty,
 .sd {
   grid-column: 1 / -1;
+  font-weight: bold;
 }
 
 .cell-full-empty,
@@ -132,8 +135,10 @@ hr {
 
 .sd {
   font-style: italic;
+  font-weight: initial;
   font-size: 14px;
   text-align: center;
+  padding: 2px 0 2px 0;
 }
 
 /* #-INPUTS */
@@ -161,4 +166,35 @@ hr {
 
 .underline {
   text-decoration: underline;
+}
+
+.superscript {
+  font-size: 80%;
+  position: relative;
+  top: -0.3em;
+}
+
+.equal-sign {
+  font-size: 120%;
+}
+
+.multiply-sign {
+  position: relative;
+  top: -0.1em;
+}
+
+/* #-BUTTON */
+div.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  border: 1px solid black;
+  border-radius: 6px;
+  background-color: rgb(192, 0, 0);
+  color: white;
+  font-weight: bold;
+  padding: 4px 8px 4px 8px;
 }
