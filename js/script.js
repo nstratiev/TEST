@@ -2,6 +2,8 @@
 const formMain = document.getElementById('form-1');
 
 // INPUT fields
+const numberFields = document.querySelectorAll('input[type="number"]');
+
 const prefermentFlourPercentInput = document.getElementById(
   'preferm-flour-percent'
 );
@@ -30,6 +32,13 @@ const btnReset_1 = document.getElementById('btn-reset-col1');
 const btnSave_1 = document.getElementById('btn-save-col1');
 
 // Event Listeners
+document.addEventListener('DOMContentLoaded', function () {
+  getLocaleStorage();
+  if (!hasEmptyInputField()) {
+    mainCalculation();
+  }
+});
+
 formMain.addEventListener('keypress', function (e) {
   if (
     e.keyCode === 13 &&
@@ -46,7 +55,21 @@ btnSubmit_1.addEventListener('click', function (e) {
   mainCalculation();
 });
 
+btnSave_1.addEventListener('click', setLocaleStorage);
+
 // Main Function
+function hasEmptyInputField() {
+  for (const elem of numberFields) {
+    const val = elem.value;
+
+    if (val === '') {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 function mainCalculation() {
   let loafsCount = loafsCountInput.value;
   let loafWeight = loafWeightInput.value;
@@ -56,14 +79,7 @@ function mainCalculation() {
   let leavenHydratationPercent = leavenHydratationPercentInput.value;
 
   // Validation
-  if (
-    loafsCount === '' ||
-    loafWeight === '' ||
-    waterPercent === '' ||
-    saltPercent === '' ||
-    prefermentFlourPercent === '' ||
-    leavenHydratationPercent === ''
-  ) {
+  if (hasEmptyInputField()) {
     alert('Необходимо е всички полета да бъдат попълнени!');
     // alert('All fields required!');
     return;
@@ -103,9 +119,28 @@ function mainCalculation() {
   saltWeightElement.textContent = ingredientsObj.salt.toFixed(0);
   flourTotalElement.textContent = totalFlour.toFixed(0);
   waterTotalElement.textContent = totalWater.toFixed(0);
+
+  setLocaleStorage();
 }
 
 // FUNCTIONS
+function getLocaleStorage() {
+  for (const key in localStorage) {
+    const val = localStorage.getItem(key);
+
+    if (typeof val === 'string') {
+      const elem = document.querySelector(`#${key}`);
+      elem.value = val;
+    }
+  }
+}
+
+function setLocaleStorage() {
+  for (const numrField of numberFields) {
+    localStorage.setItem(numrField.name, numrField.value);
+  }
+}
+
 function getTotalDoughWeight(loafsCount, loafWeight) {
   return loafsCount * loafWeight;
 }
@@ -150,6 +185,11 @@ function getIngredientsForKneading(
   return obj;
 }
 
-function printResult(target, value) {
-  target.textContent = value;
+/* function setInputsOnchangeListeners() {
+  for (const el of numberFields) {
+    el.addEventListener('change', function (e) {
+      localStorage.setItem(e.target.name, e.target.value);
+    });
+  }
 }
+ */
