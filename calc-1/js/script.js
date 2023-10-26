@@ -128,9 +128,13 @@ function getLocaleStorage() {
   for (const key in localStorage) {
     const val = localStorage.getItem(key);
 
+    console.log(`${key} >>> ${val}`);
+
     if (typeof val === 'string') {
       const elem = document.querySelector(`#${key}`);
-      elem.value = val;
+      if (elem !== null) {
+        elem.value = val;
+      }
     }
   }
 }
