@@ -80,6 +80,16 @@
   .c2-overall-bottom {
     border-left: 2px dotted black;
   }
+
+  .grid-ingr-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 370px) {
+  .legend-card {
+    width: auto;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -96,5 +106,10 @@
   .btns-container {
     grid-template-columns: repeat(1, 1fr);
     row-gap: 10px;
+  }
+
+  #btn-to-top {
+    bottom: 60px;
+    right: 10px;
   }
 }

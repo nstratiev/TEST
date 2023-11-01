@@ -6,15 +6,38 @@
     <title>Калкулатор (ХЛЯБ)</title>
     <link rel="stylesheet" href="css/general.css" />
     <link rel="stylesheet" href="css/borders.css" />
+    <link rel="stylesheet" href="css/small-elements.css" />
+    <link rel="stylesheet" href="css/comments.css" />
     <link rel="stylesheet" href="css/queries.css" />
   </head>
   <body>
     <header>
+      <nav>
+        <ul class="top-nav">
+          <li class="top-nav-item menu" title="Меню">
+            <a href="#" class="menu">М</a>
+          </li>
+          <li class="top-nav-item info" title="Пояснения">
+            <a href="#" class="info">i</a>
+          </li>
+          <li class="top-nav-item legend" title="Легенда">
+            <a href="#" class="legend">?</a>
+          </li>
+        </ul>
+      </nav>
       <h1>Калкулатор (ХЛЯБ)</h1>
+      <div class="warning">UNDER CONSTRUCTION</div>
     </header>
 
     <main>
+      <!-- ############# -->
+      <!-- ############# -->
+      <!-- Page column I -->
       <div class="calc-col">
+        <div class="btn-to-top" id="btn-to-top">
+          <div class="up-arrow"></div>
+        </div>
+
         <section class="calc-main">
           <form id="form-1" autocomplete="off">
             <!-- ############# -->
@@ -29,8 +52,17 @@
                   >
                     Квас
                   </div>
-                  <div class="cell-1 c1-internal c1-bd-dsh-internal">
+                  <div class="cell-1 c1-internal c1-bd-dsh-internal comment">
                     Прфб., (%):
+                    <aside class="comment-box">
+                      Предварително ферментирало брашно, (%);<br />
+                      <span style="color: blue"
+                        >(Google -> pre-fermented flour)</span
+                      ><br />
+                      Брашното, което се съдържа в кваса<br />
+                      (изразено като процент от общото/цялото количество брашно
+                      в тестото);
+                    </aside>
                   </div>
                   <div class="cell-2 c2-internal c2-bd-dsh-internal">
                     <input
@@ -41,13 +73,14 @@
                       min="0"
                       max="100"
                       step="0.1"
-                      placeholder="пр. 8.0"
+                      placeholder="пр. ... 8.0"
                       required
                       autofocus
                     />
                   </div>
-                  <div class="cell-1 c1-bottom c1-bd-dsh-bottom">
+                  <div class="cell-1 c1-bottom c1-bd-dsh-bottom comment">
                     h<span class="superscript">кв</span>, (%):
+                    <aside class="comment-box">Хидратация на кваса, (%);</aside>
                   </div>
                   <div class="cell-2 c2-bottom c2-bd-dsh-bottom">
                     <input
@@ -58,14 +91,17 @@
                       min="50"
                       max="125"
                       step="1"
-                      placeholder="пр. 85"
+                      placeholder="пр. ... 85"
                       required
                     />
                   </div>
 
                   <div class="cell-full-empty"></div>
 
-                  <div class="cell-1 bold italic">Вода, (%):</div>
+                  <div class="cell-1 bold italic comment">
+                    Вода, (%):
+                    <aside class="comment-box">Хидратация на тестото;</aside>
+                  </div>
                   <div class="cell-2 c2-single">
                     <input
                       type="number"
@@ -75,14 +111,19 @@
                       min="0"
                       max="125"
                       step="1"
-                      placeholder="пр. 68"
+                      placeholder="пр. ... 68"
                       required
                     />
                   </div>
 
                   <div class="cell-full-empty"></div>
 
-                  <div class="cell-1 bold italic">Сол, (%):</div>
+                  <div class="cell-1 bold italic comment">
+                    Сол, (%):
+                    <aside class="comment-box">
+                      Обикновено е препоръчително солта да не надвишава 2%;
+                    </aside>
+                  </div>
                   <div class="cell-2 c2-single">
                     <input
                       type="number"
@@ -92,7 +133,7 @@
                       min="0"
                       max="7"
                       step="0.1"
-                      placeholder="пр. 2.0"
+                      placeholder="пр. ... 2.0"
                       required
                     />
                   </div>
@@ -116,14 +157,19 @@
                       id="loafs-count"
                       min="1"
                       step="1"
-                      placeholder="пр. 3"
+                      placeholder="пр. ... 3"
                       required
                     />
                   </div>
 
-                  <div class="cell-full-math multiply-sign">x</div>
+                  <div class="cell-full-math multiply-sign">&times;</div>
 
-                  <div class="cell-1">Тегло на отделен хляб, (g):</div>
+                  <div class="cell-1 comment">
+                    Тегло на отделен хляб, (g):
+                    <aside class="comment-box">
+                      Тегло на тестото (на отделния хляб) преди печене;
+                    </aside>
+                  </div>
                   <div class="cell-2 c2-single">
                     <input
                       type="number"
@@ -132,12 +178,12 @@
                       id="loaf-weight"
                       min="0"
                       step="1"
-                      placeholder="пр. 850"
+                      placeholder="пр. ... 850"
                       required
                     />
                   </div>
 
-                  <div class="cell-full-math equal-sign">=</div>
+                  <div class="cell-full-math equal-sign">&equals;</div>
 
                   <div class="cell-1">Количество тесто, (g):</div>
                   <div class="cell-2 c2-single result">
@@ -164,11 +210,27 @@
                   <div class="cell-2 c2-single c2-bd-dsh-top result">
                     <span id="leaven-weight-result">####</span>
                   </div>
-                  <div class="sd cell-single-bd-dsh-internal">
-                    брашно (квас), (g): <span id="flour-leaven">###</span>
+                  <div
+                    class="sd cell-single-bd-dsh-internal result-secondary comment"
+                  >
+                    брашно (квас), (g):
+                    <span id="flour-leaven" class="result-secondary">###</span>
+                    <aside class="comment-box">
+                      бр (кв), (g)
+                      <span style="color: green">се определя чрез</span> Прфб.
+                      (%);
+                    </aside>
                   </div>
-                  <div class="sd cell-single-bd-dsh-bottom">
-                    вода (квас), (g): <span id="water-leaven">###</span>
+                  <div
+                    class="sd cell-single-bd-dsh-bottom result-secondary comment"
+                  >
+                    вода (квас), (g):
+                    <span id="water-leaven" class="result-secondary">###</span>
+                    <aside class="comment-box">
+                      в (кв), (g)
+                      <span style="color: green">се определя чрез</span> hкв
+                      (%);
+                    </aside>
                   </div>
 
                   <div class="cell-full-empty"></div>
@@ -193,20 +255,33 @@
             <article class="card overall">
               <div class="card-body">
                 <div class="grid--2-cols">
-                  <div class="cell-1 c1-overall-top">Брашно - общо, (g):</div>
-                  <div class="cell-2 c2-overall-top">
-                    <span id="flour-total">###</span>
+                  <div class="cell-1 c1-overall-top comment">
+                    Брашно - общо, (g):
+                    <aside class="comment-box">
+                      Общо брашно => Всичкото брашно, което се съдържа в
+                      тестото;
+                    </aside>
                   </div>
-                  <div class="cell-1 c1-overall-bottom">Вода - обща, (g):</div>
-                  <div class="cell-2 c2-overall-bottom">
-                    <span id="water-total">###</span>
+                  <div class="cell-2 c2-overall-top result-secondary">
+                    <span id="flour-total" class="result-secondary">###</span>
+                  </div>
+                  <div class="cell-1 c1-overall-bottom comment">
+                    Вода - обща, (g):
+                    <aside class="comment-box">
+                      Обща вода => Всичката вода, която се съдържа в тестото;
+                    </aside>
+                  </div>
+                  <div class="cell-2 c2-overall-bottom result-secondary">
+                    <span id="water-total" class="result-secondary">###</span>
                   </div>
                 </div>
               </div>
             </article>
 
+            <!-- ############# -->
+            <!-- ############# -->
             <!-- BUTTONS -->
-            <div class="btns-container">
+            <div id="btns-container" class="btns-container">
               <button
                 type="submit"
                 class="btn btn--submit"
@@ -226,32 +301,488 @@
         </section>
       </div>
 
+      <!-- ############# -->
+      <!-- ############# -->
+      <!-- Page column II -->
       <div class="calc-col">
         <section class="calc-additional">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure unde
-            molestias sequi ipsa vero aspernatur, hic sed ab incidunt
-            consequuntur cumque.
-          </p>
+          <aside class="card-ingr">
+            <div class="card-ingr-header">Други брашна</div>
+
+            <div class="card-ingr-body">
+              <div class="grid-ingr-container">
+                <div class="half-row-1">
+                  <div class="half-row-cell" id="cell-merged"></div>
+                  <!-- <div class="half-row-cell"></div> -->
+                </div>
+                <div class="half-row-2">
+                  <div class="half-row-cell bold comment">
+                    (%)
+                    <aside class="comment-box">
+                      % от брашното за замесване;
+                    </aside>
+                  </div>
+                  <div class="half-row-cell bold">(g)</div>
+                </div>
+
+                <!-- ROW START 1 -->
+                <div class="half-row-1">
+                  <div class="half-row-cell">1</div>
+                  <div class="half-row-cell">
+                    <input
+                      type="text"
+                      class="input-text"
+                      placeholder="...П-зърн. Пшенично..."
+                    />
+                  </div>
+                </div>
+                <div class="half-row-2">
+                  <div class="half-row-cell">
+                    <input
+                      type="number"
+                      name="additional-flour-percent"
+                      class="additional-flour-percent"
+                      min="0"
+                      max="100"
+                      step="1"
+                      data-id="1"
+                      placeholder="пр.25"
+                    />
+                  </div>
+                  <div class="half-row-cell">
+                    <span class="additional-flour-result bold" data-id="1"
+                      >##</span
+                    >
+                  </div>
+                </div>
+                <!-- ROW END 1 -->
+
+                <!-- ROW START 2 -->
+                <div class="half-row-1">
+                  <div class="half-row-cell">2</div>
+                  <div class="half-row-cell">
+                    <input type="text" class="input-text" placeholder="..." />
+                  </div>
+                </div>
+                <div class="half-row-2">
+                  <div class="half-row-cell">
+                    <input
+                      type="number"
+                      name="additional-flour-percent"
+                      class="additional-flour-percent"
+                      min="0"
+                      max="100"
+                      step="1"
+                      data-id="2"
+                      placeholder="..."
+                    />
+                  </div>
+                  <div class="half-row-cell">
+                    <span class="additional-flour-result bold" data-id="2"
+                      >##</span
+                    >
+                  </div>
+                </div>
+                <!-- ROW END 2 -->
+
+                <!-- ROW START 3 -->
+                <div class="half-row-1">
+                  <div class="half-row-cell">3</div>
+                  <div class="half-row-cell">
+                    <input type="text" class="input-text" placeholder="..." />
+                  </div>
+                </div>
+                <div class="half-row-2">
+                  <div class="half-row-cell">
+                    <input
+                      type="number"
+                      name="additional-flour-percent"
+                      class="additional-flour-percent"
+                      min="0"
+                      max="100"
+                      step="1"
+                      data-id="3"
+                      placeholder="..."
+                    />
+                  </div>
+                  <div class="half-row-cell">
+                    <span class="additional-flour-result bold" data-id="3"
+                      >##</span
+                    >
+                  </div>
+                </div>
+                <!-- ROW END 3 -->
+
+                <!-- ROW START 4 -->
+                <div class="half-row-1">
+                  <div class="half-row-cell">4</div>
+                  <div class="half-row-cell">
+                    <input type="text" class="input-text" placeholder="..." />
+                  </div>
+                </div>
+                <div class="half-row-2">
+                  <div class="half-row-cell">
+                    <input
+                      type="number"
+                      name="additional-flour-percent"
+                      class="additional-flour-percent"
+                      min="0"
+                      max="100"
+                      step="1"
+                      data-id="4"
+                      placeholder="..."
+                    />
+                  </div>
+                  <div class="half-row-cell">
+                    <span class="additional-flour-result bold" data-id="4"
+                      >##</span
+                    >
+                  </div>
+                </div>
+                <!-- ROW END 4 -->
+
+                <!-- ROW START 5 -->
+                <div class="half-row-1">
+                  <div class="half-row-cell">5</div>
+                  <div class="half-row-cell">
+                    <input type="text" class="input-text" placeholder="..." />
+                  </div>
+                </div>
+                <div class="half-row-2">
+                  <div class="half-row-cell">
+                    <input
+                      type="number"
+                      name="additional-flour-percent"
+                      class="additional-flour-percent"
+                      min="0"
+                      max="100"
+                      step="1"
+                      data-id="5"
+                      placeholder="..."
+                    />
+                  </div>
+                  <div class="half-row-cell">
+                    <span class="additional-flour-result bold" data-id="5"
+                      >##</span
+                    >
+                  </div>
+                </div>
+                <!-- ROW END 5 -->
+
+                <!-- ROW START 6 -->
+                <div class="half-row-1">
+                  <div class="half-row-cell">6</div>
+                  <div class="half-row-cell">
+                    <input type="text" class="input-text" placeholder="..." />
+                  </div>
+                </div>
+                <div class="half-row-2">
+                  <div class="half-row-cell">
+                    <input
+                      type="number"
+                      name="additional-flour-percent"
+                      class="additional-flour-percent"
+                      min="0"
+                      max="100"
+                      step="1"
+                      data-id="6"
+                      placeholder="..."
+                    />
+                  </div>
+                  <div class="half-row-cell">
+                    <span class="additional-flour-result bold" data-id="6"
+                      >##</span
+                    >
+                  </div>
+                </div>
+                <!-- ROW END 6 -->
+
+                <!-- ROW START 7 -->
+                <div class="half-row-1">
+                  <div class="half-row-cell">7</div>
+                  <div class="half-row-cell">
+                    <input type="text" class="input-text" placeholder="..." />
+                  </div>
+                </div>
+                <div class="half-row-2">
+                  <div class="half-row-cell">
+                    <input
+                      type="number"
+                      name="additional-flour-percent"
+                      class="additional-flour-percent"
+                      min="0"
+                      max="100"
+                      step="1"
+                      data-id="7"
+                      placeholder="..."
+                    />
+                  </div>
+                  <div class="half-row-cell">
+                    <span class="additional-flour-result bold" data-id="7"
+                      >##</span
+                    >
+                  </div>
+                </div>
+                <!-- ROW END 7 -->
+              </div>
+            </div>
+          </aside>
+
+          <!-- White flour grid -->
+          <div class="white-flour-grid">
+            <div class="white-flour-cell-1">Основно брашно (бяло), (g):</div>
+            <div class="white-flour-cell-2" id="white-flour-grid-result">
+              ####
+            </div>
+            <div class="additional-flour-total">Общо:&nbsp;</div>
+            <div id="additional-flour-total-result">##</div>
+          </div>
+
+          <!-- Other Ingredients grid -->
+          <aside class="card-ingr other-ingredients-card">
+            <div class="card-ingr-header">Други съставки</div>
+
+            <div class="card-ingr-body">
+              <div class="grid-ingr-container">
+                <div class="half-row-1">
+                  <div class="half-row-cell" id="cell-merged"></div>
+                  <!-- <div class="half-row-cell"></div> -->
+                </div>
+                <div class="half-row-2">
+                  <div class="half-row-cell bold comment">
+                    (%)
+                    <aside class="comment-box">% от количеството тесто;</aside>
+                  </div>
+                  <div class="half-row-cell bold">(g)</div>
+                </div>
+
+                <!-- ROW START 1 (Other ingredients) -->
+                <div class="half-row-1">
+                  <div class="half-row-cell">1</div>
+                  <div class="half-row-cell">
+                    <input
+                      type="text"
+                      class="input-text"
+                      placeholder="...Семена..."
+                    />
+                  </div>
+                </div>
+                <div class="half-row-2">
+                  <div class="half-row-cell">
+                    <input
+                      type="number"
+                      name="additional-flour-percent"
+                      class="additional-flour-percent"
+                      min="0"
+                      max="100"
+                      step="1"
+                      data-id="1"
+                      placeholder="пр.5"
+                    />
+                  </div>
+                  <div class="half-row-cell">
+                    <span class="additional-flour-result bold" data-id="1"
+                      >##</span
+                    >
+                  </div>
+                </div>
+                <!-- ROW END 1 (Other ingredients) -->
+
+                <!-- ROW START 2 (Other ingredients) -->
+                <div class="half-row-1">
+                  <div class="half-row-cell">2</div>
+                  <div class="half-row-cell">
+                    <input type="text" class="input-text" placeholder="..." />
+                  </div>
+                </div>
+                <div class="half-row-2">
+                  <div class="half-row-cell">
+                    <input
+                      type="number"
+                      name="additional-flour-percent"
+                      class="additional-flour-percent"
+                      min="0"
+                      max="100"
+                      step="1"
+                      data-id="2"
+                      placeholder="..."
+                    />
+                  </div>
+                  <div class="half-row-cell">
+                    <span class="additional-flour-result bold" data-id="2"
+                      >##</span
+                    >
+                  </div>
+                </div>
+                <!-- ROW END 2 (Other ingredients) -->
+              </div>
+            </div>
+          </aside>
+
+          <!-- ############# -->
+          <!-- Correction card -->
+          <aside>
+            <div class="correction-title">Корекции</div>
+
+            <!-- Correction subcard I -->
+            <article class="correction-card-1">
+              <div class="cell-correction-1">
+                Увеличаване на h с
+                <span>
+                  <input
+                    type="number"
+                    name="correction-hydr-percent-incr"
+                    class="correction-hydr-percent-incr"
+                    id="correction-hydr-incr-input"
+                    min="0"
+                    max="100"
+                    step="1"
+                    placeholder="пр.3"
+                  />
+                </span>
+                % се равнява на:
+              </div>
+              <div class="cell-correction-1">+ 45.00 g (вода) ####</div>
+            </article>
+
+            <!-- Correction subcard II -->
+            <article class="correction-card-2">
+              <div class="cell-correction-2">
+                Намаляване на h с
+                <span>
+                  <input
+                    type="number"
+                    name="correction-hydr-percent-decr"
+                    class="correction-hydr-percent-decr"
+                    id="correction-hydr-decr-input"
+                    min="0"
+                    max="100"
+                    step="1"
+                    placeholder="пр.2"
+                  />
+                </span>
+                % се равнява на:
+              </div>
+              <div class="cell-correction-2">+ 45.5 g (брашно) ####</div>
+              <div class="cell-correction-2">+ 0.9 g (сол) ####</div>
+              <div class="cell-correction-2 comment">
+                Прфб. - променено: <span>7.8 ##</span>%
+                <aside class="comment-box">
+                  Актуалният % на Прфб., след добавяне на допълнително брашно;
+                </aside>
+              </div>
+            </article>
+          </aside>
+
+          <!-- ############# -->
+          <!-- Water addition card -->
+          <aside>
+            <article class="water-addition-card">
+              <div class="water-addition-title comment">
+                При тесто с висока хидратация
+                <aside class="comment-box">
+                  При замесване на тесто <br />
+                  с висока хидратация, водата би <br />
+                  могло да се добави на два пъти, <br />
+                  с цел по-лесно хомогенизиране; <br />
+                </aside>
+              </div>
+              <div class="water-addition-total-amount">
+                Вода (общо), (g): <span>####</span>
+              </div>
+              <!-- ############# -->
+              <!-- ############# -->
+              <div class="water-addition-grid">
+                <div></div>
+                <div>(g)</div>
+                <div>h<span class="superscript">тесто</span>, (%)</div>
+                <!-- ############# -->
+                <div>Вода':</div>
+                <div class="comment">
+                  <span>###</span>
+                  <aside class="comment-box">
+                    Вода за първоначално <br />
+                    добавяне, (g);
+                  </aside>
+                </div>
+                <div class="comment">
+                  <input
+                    type="number"
+                    name="water-addition-percent"
+                    class="water-addition-percent"
+                    id="water-addition-input"
+                    min="0"
+                    max="100"
+                    step="1"
+                    placeholder="пр.2"
+                  />
+                  <aside class="comment-box">
+                    h на тестото след първоначалното <br />
+                    добавяне на вода;
+                  </aside>
+                </div>
+                <!-- ############# -->
+                <div>Вода'':</div>
+                <div class="comment">
+                  <span>###</span>
+                  <aside class="comment-box">
+                    Вода за финално <br />
+                    добавяне, (g);
+                  </aside>
+                </div>
+                <div class="comment">
+                  <span>###</span>
+                  <aside class="comment-box">
+                    h на тестото след финалното <br />
+                    добавяне на вода;
+                  </aside>
+                </div>
+              </div>
+            </article>
+          </aside>
+
+          <!-- ############# -->
+          <!-- ############# -->
+          <!-- BUTTONS -->
+          <div id="btns-container" class="btns-container">
+            <button type="submit" class="btn btn--submit" id="btn-submit-col1">
+              Изчисли
+            </button>
+            <button type="reset" class="btn btn--reset" id="btn-reset-col1">
+              Нулиране
+            </button>
+            <button type="button" class="btn btn--save" id="btn-save-col1">
+              Запамети
+            </button>
+          </div>
+
           <hr />
         </section>
       </div>
+
+      <!-- ############# -->
+      <!-- ############# -->
+      <!-- Page column III -->
       <div class="calc-col">
         <section class="calc-leaven-feed">
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio
-            et non molestias, quas eius magnam nostrum praesentium in quisquam,
-            rem iusto?
-          </p>
-          <hr />
+          <aside class="legend-card">
+            <div class="legend-title">Легенда:</div>
+            <div class="legend-variable-value">променлива стойност</div>
+            <div class="legend-target-value">търсена стойност</div>
+            <div class="legend-text-value">текстът може да се редактира</div>
+            <div>*Десетичният знак се изписва с „точка”</div>
+            <div>бр - брашно</div>
+            <div>в - вода</div>
+            <div>h / хидр. - хидратация</div>
+            <div>кв. м. - „квас майка” (неподхранен квас)</div>
+            <div>кв - работен квас (активен/зрял квас)</div>
+          </aside>
         </section>
       </div>
     </main>
 
     <footer>
-      <a href="https://nstratiev.github.io/test/"
-        >Online Sourdough Calculator - TEST</a
-      >
+      <a href="../">Online Sourdough Calculator</a>
     </footer>
 
     <script src="js/script.js"></script>
