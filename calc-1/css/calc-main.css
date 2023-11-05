@@ -5,11 +5,12 @@
   margin-bottom: 20px;
 }
 
-.card-header {
+.card-header._main {
   border-bottom: 1px solid black;
   background-color: rgb(220, 230, 241);
   text-decoration: underline;
   font-weight: bold;
+  padding: 2px;
 }
 
 .card-body {

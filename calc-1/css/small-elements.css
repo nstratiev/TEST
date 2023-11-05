@@ -1,6 +1,6 @@
 .warning {
   color: red;
-  margin: 10px;
+  padding: 4px;
   font-size: 24px;
   font-weight: bold;
   text-decoration: underline;
@@ -94,11 +94,13 @@
   translate: 0 0.8em;
 }
 
-#btn-to-top:hover {
+#btn-to-top:hover,
+#btn-to-top:active {
   border: 2px solid rgb(128, 128, 128);
   background-color: rgba(255, 255, 255, 0.8);
 }
 
-#btn-to-top:hover .up-arrow {
+#btn-to-top:hover .up-arrow,
+#btn-to-top:active .up-arrow {
   border-color: rgb(128, 128, 128);
 }

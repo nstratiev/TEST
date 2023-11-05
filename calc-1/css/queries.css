@@ -23,12 +23,6 @@
   }
 }
 
-@media (max-width: 370px) {
-  .legend-card {
-    width: auto;
-  }
-}
-
 @media (max-width: 350px) {
   .grid--2-cols {
     grid-template-columns: repeat(1, 1fr);
@@ -56,5 +50,28 @@
 
   .right-dotted.result-secondary {
     border-left: 2px dotted black;
+  }
+}
+
+@media (max-width: 370px) {
+  .legend-card {
+    width: auto;
+  }
+}
+
+@media (max-width: 308px) {
+  .white-flour-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .white-flour-cell-1,
+  .additional-flour-total {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 300px) {
+  .card-flours-cell._1a._top {
+    border: none;
   }
 }
