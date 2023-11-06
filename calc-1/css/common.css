@@ -53,10 +53,10 @@
 .sd {
   font-style: italic;
   font-weight: initial;
-  font-size: 14px;
+  font-size: 85%;
   text-align: center;
-  padding: 2px 0 2px 0;
-  background-color: none;
+  padding: 2px;
+  /* background-color: none; */
   flex: 1 1 auto;
 }
 

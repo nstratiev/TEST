@@ -1,13 +1,13 @@
 /* #-BUTTONS */
-.btns-group-main {
+.btns-group {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
-#btn-submit,
-#btn-reset,
-#btn-save {
+.btn-submit,
+.btn-reset,
+.btn-save {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,19 +18,20 @@
   height: 42px;
 }
 
-#btn-submit:hover,
-#btn-submit:active,
-#btn-reset:hover,
-#btn-reset:active,
-#btn-save:hover,
-#btn-save:active {
+.btn-submit:hover,
+.btn-submit:active,
+.btn-reset:hover,
+.btn-reset:active,
+.btn-save:hover,
+.btn-save:active {
   border-width: 2px;
   background-color: white;
 }
 
-#btn-submit svg,
-#btn-reset svg,
-#btn-save svg {
-  width: 70%;
+.btn-submit svg,
+.btn-reset svg,
+.btn-save svg {
+  width: 65%;
   height: auto;
+  z-index: 0;
 }

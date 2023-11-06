@@ -1,8 +1,10 @@
 // FORMS
-const formMain = document.querySelector('#form-1');
+const formMain = document.querySelector('.calc-main');
+// console.log(formMain);
 
 // INPUT fields
-const numberFields = document.querySelectorAll('input[type="number"]');
+const numberFields = document.querySelectorAll('input[class="percent"]');
+// const numberFields = document.querySelectorAll('input[type="number"]');
 
 const prefermentFlourPercentInput = document.querySelector(
   '#preferm-flour-percent'
@@ -32,15 +34,18 @@ const flourTotalElement = document.querySelector('#flour-total');
 const waterTotalElement = document.querySelector('#water-total');
 
 // BUTTONS
-const btnSubmit_1 = document.querySelector('#btn-submit-col1');
-const btnReset_1 = document.querySelector('#btn-reset-col1');
-const btnSave_1 = document.querySelector('#btn-save-col1');
+const btnSubmit_1 = document.querySelector('#btn-submit-main');
+const btnReset_1 = document.querySelector('#btn-reset-main');
+const btnSave_1 = document.querySelector('#btn-save-main');
 const btnToTop = document.querySelector('#btn-to-top');
 
 // EVENT LISTENERS
 // -- Onload listener
 document.addEventListener('DOMContentLoaded', function () {
-  getLocaleStorage();
+  console.log('abc');
+  const storage = getLocaleStorage();
+  console.log(storage);
+
   if (!hasEmptyInputFieldValidation()) {
     mainCalculation();
   }
@@ -83,11 +88,12 @@ for (const field of numberFields) {
 }
 
 // Button listeners
-document.querySelector('#btns-container').addEventListener('click', (e) => {
+document.querySelector('#btns-group').addEventListener('click', (e) => {
+  // console.log(e);
   btnsGroupListener(e);
 });
 
-document.querySelector('#btns-container').addEventListener('keypress', (e) => {
+document.querySelector('#btns-group').addEventListener('keypress', (e) => {
   if (e.keyCode === 13) {
     btnsGroupListener(e);
   }
@@ -219,6 +225,8 @@ function getLocaleStorage() {
 
     if (typeof val === 'string') {
       const elem = document.querySelector(`#${key}`);
+      console.log(elem);
+      console.log(val);
       if (elem !== null) {
         elem.value = val;
       }
@@ -227,9 +235,11 @@ function getLocaleStorage() {
 }
 
 function setLocaleStorage() {
-  for (const numrField of numberFields) {
-    localStorage.setItem(numrField.name, numrField.value);
+  for (const numField of numberFields) {
+    localStorage.setItem(numField.name, numField.value);
   }
+
+  console.log(localStorage);
 }
 
 // --- RESET functions
@@ -264,19 +274,31 @@ function btnsGroupListener(e) {
     btnBgColor = btnBgColor.color;
   }
 
-  if (target.className.includes('btn--submit')) {
+  // console.log(target.tagName);
+
+  function condition(e, nameClass) {
+    const target = e.target;
+
+    if (target.tagName === 'svg') {
+      return target.parentElement.className.includes(nameClass);
+    } else if (target.tagName === 'BUTTON') {
+      return target.className.includes(nameClass);
+    }
+  }
+
+  if (condition(e, 'btn-submit')) {
     // console.log('submit');
 
     if (mainCalculation()) {
       temporaryOnClickAlert('&check;', 500, btnBgColor);
     }
-  } else if (target.className.includes('btn--reset')) {
+  } else if (condition(e, 'btn-reset')) {
     // console.log('reset');
     resetInputFields();
     resetResultValuesMain();
     resetResultValuesSecondary();
     temporaryOnClickAlert('&check;', 500, btnBgColor);
-  } else if (target.className.includes('btn--save')) {
+  } else if (condition(e, 'btn-save')) {
     // console.log('save');
     setLocaleStorage();
     temporaryOnClickAlert('&check;', 500, btnBgColor);

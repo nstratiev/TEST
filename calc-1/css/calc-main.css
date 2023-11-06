@@ -1,5 +1,5 @@
 /* #-CARDS */
-.card {
+.card._main {
   border: 2px solid black;
   max-width: 320px;
   margin-bottom: 20px;
@@ -13,7 +13,7 @@
   padding: 2px;
 }
 
-.card-body {
+.card-body._main {
   padding: 16px;
 }
 

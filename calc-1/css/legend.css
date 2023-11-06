@@ -1,6 +1,8 @@
 .legend-card {
   max-width: 320px;
   width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .legend-card div:first-child {
