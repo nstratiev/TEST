@@ -1,25 +1,14 @@
-// FORMS
+// Elements
+const btnToTop = document.querySelector('#btn-to-top');
 const formMain = document.querySelector('.calc-main');
-// console.log(formMain);
-
-// INPUT fields
-const numberFields = document.querySelectorAll('input[class="percent"]');
-// const numberFields = document.querySelectorAll('input[type="number"]');
-
-const prefermentFlourPercentInput = document.querySelector(
-  '#preferm-flour-percent'
+const numberFieldsMain = document.querySelectorAll(
+  'input[class="percent _main"]'
 );
-const leavenHydratationPercentInput = document.querySelector(
-  '#leaven-hydratation-percent'
-);
-const waterPercentInput = document.querySelector('#water-percent');
-const saltPercentInput = document.querySelector('#salt-percent');
-const loafsCountInput = document.querySelector('#loafs-count');
-const loafWeightInput = document.querySelector('#loaf-weight');
 
 // RESULT elements
-const resultContainersMain = document.getElementsByClassName('result');
-const resultContainersSecondary = document.querySelectorAll(
+const resultContainersMainPrimary =
+  document.querySelectorAll('.result-primary');
+const resultContainersMainSecondary = document.querySelectorAll(
   'span.result-secondary'
 );
 
@@ -33,53 +22,20 @@ const saltWeightElement = document.querySelector('#salt-weight-result');
 const flourTotalElement = document.querySelector('#flour-total');
 const waterTotalElement = document.querySelector('#water-total');
 
-// BUTTONS
-const btnSubmit_1 = document.querySelector('#btn-submit-main');
-const btnReset_1 = document.querySelector('#btn-reset-main');
-const btnSave_1 = document.querySelector('#btn-save-main');
-const btnToTop = document.querySelector('#btn-to-top');
-
 // EVENT LISTENERS
-// -- Onload listener
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('abc');
-  const storage = getLocaleStorage();
-  console.log(storage);
+  const storageMain = getLocaleStorageMain();
+  // console.log(storageMain);
 
-  if (!hasEmptyInputFieldValidation()) {
-    mainCalculation();
-  }
-});
+  // if (!hasEmptyInputFieldValidation()) {
+  //   mainCalculation();
+  // }
 
-// -- Top navigation listeners
-const navItem = document.querySelectorAll('.top-nav-item');
-for (const item of navItem) {
-  item.addEventListener('click', (e) => {
-    if (e.target.className.includes('menu')) {
-      window.location.href = '../';
-    } else if (e.target.className.includes('legend')) {
-      console.log('legend');
-    } else if (e.target.className.includes('info')) {
-      console.log('info');
-    }
-  });
-}
-
-// console.log(navItem);
-
-// -- Button-to-top listeners
-window.addEventListener('scroll', onScreenScroll);
-btnToTop.addEventListener('click', goToScreenTop);
-
-// -- Form-main listener
-formMain.addEventListener('keypress', function (e) {
-  if (e.keyCode === 13) {
-    e.preventDefault();
-  }
+  calcMainSubmit();
 });
 
 // -- Focusout input listeners
-for (const field of numberFields) {
+for (const field of numberFieldsMain) {
   field.addEventListener('focusout', (e) => {
     const min = e.target.min;
     const max = e.target.max;
@@ -87,58 +43,87 @@ for (const field of numberFields) {
   });
 }
 
-// Button listeners
-document.querySelector('#btns-group').addEventListener('click', (e) => {
-  // console.log(e);
-  btnsGroupListener(e);
-});
+// -- Button-to-top listeners
+window.addEventListener('scroll', onScreenScroll);
+btnToTop.addEventListener('click', goToScreenTop);
 
-document.querySelector('#btns-group').addEventListener('keypress', (e) => {
-  if (e.keyCode === 13) {
-    btnsGroupListener(e);
+// -- Form listeners
+document.addEventListener('click', (e) => {
+  if (e.target.tagName !== 'BUTTON') {
+    return;
+  }
+
+  const btnsGroupClassName = e.target.parentElement.className;
+  const btnClassName = e.target.className;
+
+  if (btnsGroupClassName.includes('_main')) {
+    // console.log('MAIN');
+    if (btnClassName === 'btn-submit') {
+      calcMainSubmit();
+    } else if (btnClassName === 'btn-reset') {
+      resetMainForm();
+    } else if (btnClassName === 'btn-save') {
+      setLocaleStorageMain();
+    }
+  } else if (btnsGroupClassName.includes('_flours')) {
+    // console.log('FLOURS');
+  } else if (btnsGroupClassName.includes('_corrections')) {
+    // console.log('CORRECTIONS');
+  } else if (btnsGroupClassName.includes('_water')) {
+    // console.log('WATER');
+  } else if (btnsGroupClassName.includes('_leaven-feed')) {
+    // console.log('LEAVEN FEED');
   }
 });
 
 // FUNCTIONS
 
-// -- MAIN function
-function mainCalculation() {
-  // Initial input text values
-  let loafsCount = loafsCountInput.value;
-  let loafWeight = loafWeightInput.value;
-  let waterPercent = waterPercentInput.value;
-  let saltPercent = saltPercentInput.value;
-  let prefermentFlourPercent = prefermentFlourPercentInput.value;
-  let leavenHydratationPercent = leavenHydratationPercentInput.value;
+// --- Locale Storage functions
+function getLocaleStorageMain() {
+  let formMainStorage = localStorage.getItem('formMain');
+  formMainStorage = JSON.parse(formMainStorage);
 
-  // Validations
-  if (!emptyFieldsValidation()) {
-    return false;
+  for (const key in formMainStorage) {
+    const val = formMainStorage[key];
+    const elem = document.querySelector(`#${camelToKebapCase(key)}`);
+    elem.value = val;
   }
 
-  if (!valuesRangeValidation()) {
-    return false;
+  return formMainStorage;
+}
+
+function setLocaleStorageMain_Old() {
+  for (const numField of numberFieldsMain) {
+    localStorage.setItem(numField.name, numField.value);
   }
+}
 
-  // Input values as number
-  loafsCount = Number(loafsCount);
-  loafWeight = Number(loafWeight);
-  waterPercent = Number(waterPercent) / 100;
-  saltPercent = Number(saltPercent) / 100;
-  prefermentFlourPercent = Number(prefermentFlourPercent) / 100;
-  leavenHydratationPercent = Number(leavenHydratationPercent) / 100;
+// Listener functions
+function calcMainSubmit() {
+  let formData = new FormData(formMain);
+  const formDataObj = formdataToObject(formData);
 
-  // Calculate bread parameters
+  // Validation
+
+  // Input values
+  const prefermFlourPercent = formDataObj.prefermFlourPercent / 100;
+  const leavenHydratationPercent = formDataObj.leavenHydratationPercent / 100;
+  const waterPercent = formDataObj.waterPercent / 100;
+  const saltPercent = formDataObj.saltPercent / 100;
+  const loafsCount = formDataObj.loafsCount;
+  const loafWeight = formDataObj.loafWeight;
+
+  // Clculated values
   const totalDoughWeight = getTotalDoughWeight(loafsCount, loafWeight);
   const totalFlour = getTotalFlour(totalDoughWeight, waterPercent, saltPercent);
   const totalWater = getTotalWater(totalFlour, waterPercent);
   const totalSalt = getTotalSalt(totalFlour, saltPercent);
   const leavenObj = getLeavenComponents(
     totalFlour,
-    prefermentFlourPercent,
+    prefermFlourPercent,
     leavenHydratationPercent
   );
-  const ingredientsObj = getIngredientsForKneading(
+  const kneadingdObj = getIngredientsForKneading(
     totalFlour,
     totalWater,
     totalSalt,
@@ -146,30 +131,23 @@ function mainCalculation() {
     leavenObj.leavenWater
   );
 
-  // Set visible result values
-  doughWeightElement.textContent = totalDoughWeight.toFixed(0);
+  // Print calculated values
+  printMainPrimaryResults(
+    totalDoughWeight,
+    kneadingdObj.flour,
+    leavenObj.leavenTotal,
+    kneadingdObj.water,
+    kneadingdObj.salt
+  );
+  printMainSecondaryResults(
+    leavenObj.leavenFlour,
+    leavenObj.leavenWater,
+    totalFlour,
+    totalWater
+  );
 
-  // console.log(flourWeightElement);
-  // console.log(typeof ingredientsObj.flour);
-
-  flourWeightElement.textContent = ingredientsObj.flour.toFixed(0);
-  leavenWeightElement.textContent = leavenObj.leavenTotal.toFixed(0);
-  flourLeavenElement.textContent = leavenObj.leavenFlour.toFixed(0);
-  waterLeavenElement.textContent = leavenObj.leavenWater.toFixed(0);
-  waterWeightElement.textContent = ingredientsObj.water.toFixed(0);
-  saltWeightElement.textContent = ingredientsObj.salt.toFixed(0);
-
-  // console.log(flourTotalElement);
-  // console.log(typeof totalFlour);
-
-  flourTotalElement.textContent = totalFlour.toFixed(0);
-  waterTotalElement.textContent = totalWater.toFixed(0);
-
-  setLocaleStorage();
-  return true;
+  setLocaleStorageMain();
 }
-
-// -- FUNCTIONS II
 
 // --- Math functions
 function getTotalDoughWeight(loafsCount, loafWeight) {
@@ -190,14 +168,15 @@ function getTotalSalt(totalFlour, saltPercent) {
 
 function getLeavenComponents(
   totalFlour,
-  prefermentFlourPercent,
+  prefermentedFlourPercent,
   leavenHydratationPercent
 ) {
   const obj = {};
-  obj.leavenFlour = totalFlour * prefermentFlourPercent;
+  obj.leavenFlour = totalFlour * prefermentedFlourPercent;
   obj.leavenWater = obj.leavenFlour * leavenHydratationPercent;
   obj.leavenTotal = obj.leavenFlour + obj.leavenWater;
 
+  // const obj = {leavenTotal: '', leavenFlour: '', leavenWater: ''};
   return obj;
 }
 
@@ -213,96 +192,25 @@ function getIngredientsForKneading(
   obj.water = totalWater - leavenWater;
   obj.salt = totalSalt;
 
+  // const obj = { flour: '', water: '', salt: '' };
   return obj;
 }
 
-// --- Locale Storage functions
-function getLocaleStorage() {
-  for (const key in localStorage) {
-    const val = localStorage.getItem(key);
-
-    // console.log(`${key} >>> ${val}`);
-
-    if (typeof val === 'string') {
-      const elem = document.querySelector(`#${key}`);
-      console.log(elem);
-      console.log(val);
-      if (elem !== null) {
-        elem.value = val;
-      }
-    }
-  }
-}
-
-function setLocaleStorage() {
-  for (const numField of numberFields) {
-    localStorage.setItem(numField.name, numField.value);
-  }
-
-  console.log(localStorage);
-}
-
-// --- RESET functions
-function resetInputFields() {
-  for (const field of numberFields) {
-    field.value = '';
-  }
-}
-
-function resetResultValuesMain() {
-  for (const result of resultContainersMain) {
-    result.textContent = '####';
-  }
-}
-
-function resetResultValuesSecondary() {
-  for (const result of resultContainersSecondary) {
-    result.textContent = '###';
-  }
-}
-
-// --- Listener functions
-function btnsGroupListener(e) {
-  e.preventDefault();
-
-  const target = e.target;
-  let btnBgColor = getComputedStyle(target);
-
-  if (e.keyCode === 13) {
-    btnBgColor = btnBgColor.backgroundColor;
+// --- Screen scroll functions
+function onScreenScroll() {
+  if (
+    document.body.scrollTop > 120 ||
+    document.documentElement.scrollTop > 120
+  ) {
+    btnToTop.style.display = 'block';
   } else {
-    btnBgColor = btnBgColor.color;
+    btnToTop.style.display = 'none';
   }
+}
 
-  // console.log(target.tagName);
-
-  function condition(e, nameClass) {
-    const target = e.target;
-
-    if (target.tagName === 'svg') {
-      return target.parentElement.className.includes(nameClass);
-    } else if (target.tagName === 'BUTTON') {
-      return target.className.includes(nameClass);
-    }
-  }
-
-  if (condition(e, 'btn-submit')) {
-    // console.log('submit');
-
-    if (mainCalculation()) {
-      temporaryOnClickAlert('&check;', 500, btnBgColor);
-    }
-  } else if (condition(e, 'btn-reset')) {
-    // console.log('reset');
-    resetInputFields();
-    resetResultValuesMain();
-    resetResultValuesSecondary();
-    temporaryOnClickAlert('&check;', 500, btnBgColor);
-  } else if (condition(e, 'btn-save')) {
-    // console.log('save');
-    setLocaleStorage();
-    temporaryOnClickAlert('&check;', 500, btnBgColor);
-  }
+function goToScreenTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
 }
 
 // --- Alert functions
@@ -362,65 +270,111 @@ function onFocusOutAlert(field, min, max) {
   }
 }
 
-// --- Validation functions
-function hasEmptyInputFieldValidation() {
-  for (const field of numberFields) {
-    const val = field.value;
+// Helper Functions
+function formdataToObject(formData) {
+  const formDataArr = Array.from(formData);
+  formDataArr.map((el) => {
+    el[1] = Number(el[1]);
+  });
 
-    if (val === '') {
-      setTimeout(() => {
-        field.focus();
-        field.style.border = '2px solid green';
-      }, 0);
-
-      return true;
-    }
-  }
-
-  return false;
+  return Object.fromEntries(formDataArr);
 }
 
-function emptyFieldsValidation() {
-  if (hasEmptyInputFieldValidation()) {
-    alert('Необходимо е всички полета да бъдат попълнени!');
-    // alert('All fields required!');
-    return false;
-  }
+function camelToKebapCase(str) {
+  const strArr = str.split('');
 
-  return true;
-}
+  for (let i = 0; i < strArr.length; i++) {
+    const charCode = strArr[i].charCodeAt(0);
 
-function valuesRangeValidation() {
-  let isValid = true;
-
-  for (const field of numberFields) {
-    const min = field.min;
-    const max = field.max;
-
-    if (valueRangeAlert(field, min, max)) {
+    if (charCode < 65 || charCode > 90) {
       continue;
-    } else {
-      isValid = false;
-      break;
     }
+
+    strArr[i] = strArr[i].toLowerCase();
+    strArr.splice(i, 0, '-');
   }
 
-  return isValid;
+  return strArr.join('');
 }
 
-// --- Screen scroll functions
-function onScreenScroll() {
-  if (
-    document.body.scrollTop > 120 ||
-    document.documentElement.scrollTop > 120
-  ) {
-    btnToTop.style.display = 'block';
-  } else {
-    btnToTop.style.display = 'none';
+// Print functions
+function printMainPrimaryResults(
+  doughWeight,
+  flourWeight,
+  leavenWeight,
+  waterWeight,
+  saltWeight
+) {
+  doughWeightElement.textContent = doughWeight.toFixed(0);
+  flourWeightElement.textContent = flourWeight.toFixed(0);
+  leavenWeightElement.textContent = leavenWeight.toFixed(0);
+  waterWeightElement.textContent = waterWeight.toFixed(0);
+  saltWeightElement.textContent = saltWeight.toFixed(0);
+}
+
+function printMainSecondaryResults(
+  leavenFlourWeight,
+  leavenWaterWeight,
+  totalFlour,
+  totalWater
+) {
+  flourLeavenElement.textContent = leavenFlourWeight.toFixed(0);
+  waterLeavenElement.textContent = leavenWaterWeight.toFixed(0);
+  flourTotalElement.textContent = totalFlour.toFixed(0);
+  waterTotalElement.textContent = totalWater.toFixed(0);
+}
+
+// Reset functions
+function resetMainForm() {
+  resetMainInputs();
+  resetMainPrimaryResults();
+  resetMainSecondaryResults();
+
+  const bool = confirm(
+    'Полетата на текущата форма ще бъдат изтрити ... !\n============\nИзтриване на всички запаметените стойности, свързани с настоящата страница?'
+  );
+
+  if (bool === true) {
+    localStorage.clear();
   }
 }
 
-function goToScreenTop() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
+function resetMainInputs() {
+  numberFieldsMain.forEach((inp) => {
+    inp.value = '';
+  });
+}
+
+function resetMainPrimaryResults() {
+  doughWeightElement.textContent = '####';
+  flourWeightElement.textContent = '####';
+  leavenWeightElement.textContent = '####';
+  waterWeightElement.textContent = '####';
+  saltWeightElement.textContent = '####';
+}
+
+function resetMainSecondaryResults() {
+  flourLeavenElement.textContent = '###';
+  waterLeavenElement.textContent = '###';
+  flourTotalElement.textContent = '###';
+  waterTotalElement.textContent = '###';
+}
+
+// OLD functions
+function setLocaleStorageMain() {
+  const obj = {};
+
+  for (const numField of numberFieldsMain) {
+    obj[numField.name] = numField.value;
+  }
+
+  localStorage.setItem('formMain', JSON.stringify(obj));
+}
+
+function getLocaleStorageMain_Old() {
+  Object.entries(localStorage).forEach((el) => {
+    const [key, val] = el;
+    const elem = document.querySelector(`#${camelToKebapCase(key)}`);
+    elem.value = val;
+  });
 }
