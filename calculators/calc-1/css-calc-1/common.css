@@ -79,6 +79,10 @@
   top: -0.3em;
 }
 
+.red-text {
+  color: rgb(192, 0, 0);
+}
+
 .equal-sign {
   font-size: 120%;
 }

@@ -4,19 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Калкулатор (ХЛЯБ)</title>
-    <link rel="stylesheet" href="css/general.css" />
-    <link rel="stylesheet" href="css/common.css" />
-    <link rel="stylesheet" href="css/calc-main.css" />
-    <link rel="stylesheet" href="css/calc-flours.css" />
-    <link rel="stylesheet" href="css/calc-corrections.css" />
-    <link rel="stylesheet" href="css/calc-water.css" />
-    <link rel="stylesheet" href="css/calc-leaven.css" />
-    <link rel="stylesheet" href="css/legend.css" />
-    <link rel="stylesheet" href="css/inputs.css" />
-    <link rel="stylesheet" href="css/buttons.css" />
-    <link rel="stylesheet" href="css/small-elements.css" />
-    <link rel="stylesheet" href="css/borders.css" />
-    <link rel="stylesheet" href="css/queries.css" />
+    <link rel="stylesheet" href="css-calc-1/general.css" />
+    <link rel="stylesheet" href="css-calc-1/common.css" />
+    <link rel="stylesheet" href="css-calc-1/calc-main.css" />
+    <link rel="stylesheet" href="css-calc-1/calc-flours.css" />
+    <link rel="stylesheet" href="css-calc-1/calc-corrections.css" />
+    <link rel="stylesheet" href="css-calc-1/calc-water.css" />
+    <link rel="stylesheet" href="css-calc-1/calc-leaven.css" />
+    <link rel="stylesheet" href="css-calc-1/legend.css" />
+    <link rel="stylesheet" href="css-calc-1/inputs.css" />
+    <link rel="stylesheet" href="css-calc-1/buttons.css" />
+    <link rel="stylesheet" href="css-calc-1/small-elements.css" />
+    <link rel="stylesheet" href="css-calc-1/borders.css" />
+    <link rel="stylesheet" href="css-calc-1/queries.css" />
+    <link rel="stylesheet" href="../common-css/modal.css" />
   </head>
   <body>
     <header>
@@ -24,14 +25,18 @@
       <!-- <div class="warning">UNDER CONSTRUCTION</div> -->
       <nav>
         <ul class="top-nav">
-          <li class="top-nav-item menu" title="Меню">
-            <a href="../" class="menu"><span class="top-nav-text">М</span></a>
+          <li>
+            <a href="../../" class="top-nav-item menu" title="Меню"
+              ><span class="top-nav-text">М</span></a
+            >
           </li>
-          <li class="top-nav-item info" title="Пояснения">
-            <a href="#" class="info"><span class="top-nav-text">i</span></a>
+          <li>
+            <a href="#" class="top-nav-item info" title="Пояснения"
+              ><span class="top-nav-text">i</span></a
+            >
           </li>
-          <li class="top-nav-item legend" title="Легенда">
-            <a href="#legend-card" class="legend"
+          <li>
+            <a href="#legend-card" class="top-nav-item legend" title="Легенда"
               ><span class="top-nav-text">?</span></a
             >
           </li>
@@ -1420,15 +1425,19 @@
 
               <div class="grid--2-cols">
                 <div class="grid-item leaven-feed-method bold comment">
-                  Метод за подхранване на кваса-„майка”
+                  Метод за подхранване на<br />кваса-„майка”
                   <aside class="comment-box">
                     Чрез него се определя съотношението между количеството Кв.м.
                     и количеството Бр. за подхранване на Кв.м.
                   </aside>
                 </div>
                 <div class="grid-item bold comment">
-                  Бр<span class="superscript">кв</span> = Кв.м.&nbsp;
-                  <span style="color: rgb(192, 0, 0)">х</span>
+                  Бр<span class="superscript">кв</span
+                  ><span class="red-text equal-sign">&nbsp;&equals;&nbsp;</span
+                  >Кв.м.
+                  <span class="red-text multiply-sign"
+                    >&nbsp;&times;&nbsp;</span
+                  >
                   <aside class="comment-box">
                     Кв.м. се подхранва с бр., чието количество <br />
                     е равно на количеството кв.м., умножено <br />
@@ -1710,9 +1719,9 @@
     </main>
 
     <footer>
-      <a href="../">Online Sourdough Calculator</a>
+      <a href="../../">Online Sourdough Calculator</a>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script type="module" src="js-calc-1/script.js"></script>
   </body>
 </html>
