@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,7 @@
       <nav>
         <ul class="top-nav">
           <li>
-            <a href="../../" class="top-nav-item menu" title="Меню"
+            <a href="../" class="top-nav-item menu" title="Меню"
               ><span class="top-nav-text">М</span></a
             >
           </li>
@@ -145,10 +145,7 @@
                   Квас
                 </div>
 
-                <label
-                  class="grid-item left-dashed comment"
-                  for="preferm-flour-percent"
-                >
+                <label class="grid-item left-dashed comment" for="#">
                   Прфб., (%):
                   <aside class="comment-box">
                     Предварително ферментирало брашно, (%);<br />
@@ -175,10 +172,7 @@
                   />
                 </div>
 
-                <label
-                  class="grid-item left-dashed comment"
-                  for="leaven-hydratation-percent"
-                >
+                <label class="grid-item left-dashed comment" for="#">
                   h<span class="superscript">кв</span>, (%):
                   <aside class="comment-box">Хидратация на кваса, (%);</aside>
                 </label>
@@ -200,10 +194,7 @@
               <div class="row-empty"></div>
 
               <div class="grid--2-cols">
-                <label
-                  class="grid-item bold italic comment"
-                  for="water-percent"
-                >
+                <label class="grid-item bold italic comment" for="#">
                   Вода, (%):
                   <aside class="comment-box">Хидратация на тестото;</aside>
                 </label>
@@ -225,7 +216,7 @@
               <div class="row-empty"></div>
 
               <div class="grid--2-cols">
-                <label class="grid-item bold italic comment" for="salt-percent">
+                <label class="grid-item bold italic comment" for="#">
                   Сол, (%):
                   <aside class="comment-box">
                     Обикновено е препоръчително солта да не надвишава 2%;
@@ -255,9 +246,7 @@
 
             <div class="card-body _main">
               <div class="grid--2-cols">
-                <label class="grid-item" for="loafs-count"
-                  >Хлябове, (брой):</label
-                >
+                <label class="grid-item" for="#">Хлябове, (брой):</label>
                 <div class="grid-item inp">
                   <input
                     type="number"
@@ -275,7 +264,7 @@
               <div class="row-math multiply-sign">&times;</div>
 
               <div class="grid--2-cols">
-                <label class="grid-item comment" for="loaf-weight">
+                <label class="grid-item comment" for="#">
                   Тегло на отделен хляб, (g):
                   <aside class="comment-box">
                     Тегло на тестото (на отделния хляб) преди печене;
@@ -913,7 +902,7 @@
                   />
                 </div>
                 <div class="card-flours-cell _2b">
-                  <span class="additional-flour-result bold" data-id="1b">
+                  <span class="additional-ingredient-result bold" data-id="1b">
                   </span>
                 </div>
               </div>
@@ -948,7 +937,7 @@
                   />
                 </div>
                 <div class="card-flours-cell _2b">
-                  <span class="additional-flour-result bold" data-id="2b">
+                  <span class="additional-ingredient-result bold" data-id="2b">
                   </span>
                 </div>
               </div>
@@ -1095,9 +1084,9 @@
               <span>
                 <input
                   type="number"
-                  name="correctionHydrPercentIncrement"
-                  class="correction-hydr-percent-incr"
-                  id="correction-hydr-incr-input"
+                  name="hydratationIncrement"
+                  class="correction-hydr-percent"
+                  id="hydratation-increment"
                   min="0"
                   max="100"
                   step="1"
@@ -1107,7 +1096,7 @@
               %<br />се равнява на:
             </div>
             <div class="cell-correction-1 _bottom blue bold">
-              + 45.00 g (вода) ####
+              <span class="corrections-incr-result-water"></span>
             </div>
           </article>
 
@@ -1118,9 +1107,9 @@
               <span>
                 <input
                   type="number"
-                  name="correctionHydrPercentDecrement"
-                  class="correction-hydr-percent-decr"
-                  id="correction-hydr-decr-input"
+                  name="hydratationDecrement"
+                  class="correction-hydr-percent"
+                  id="hydratation-decrement"
                   min="0"
                   max="100"
                   step="1"
@@ -1129,10 +1118,14 @@
               </span>
               %<br />се равнява на:
             </div>
-            <div class="cell-correction-2 red bold">+ 45.5 g (брашно) ####</div>
-            <div class="cell-correction-2 green bold">+ 0.9 g (сол) ####</div>
+            <div class="cell-correction-2 red bold">
+              <span class="corrections-decr-result-flour"> </span>
+            </div>
+            <div class="cell-correction-2 green bold">
+              <span class="corrections-decr-result-salt"> </span>
+            </div>
             <div class="cell-correction-2 purple comment">
-              Прфб. - променено: <span>7.8 ##</span>%
+              <span class="corrections-decr-result-preferm"></span>
               <aside class="comment-box">
                 Актуалният % на Прфб., след добавяне на допълнително брашно;
               </aside>
@@ -1273,7 +1266,7 @@
             При тесто с висока хидратация
             <aside class="comment-box">
               При замесване на тесто <br />
-              с висока хидратация, водата би <br />
+              с много висока хидратация, водата би <br />
               могло да се добави на два пъти, <br />
               с цел по-лесно хомогенизиране; <br />
             </aside>
@@ -1286,7 +1279,7 @@
           <!-- ############# -->
           <div class="water-addition-grid">
             <div class="water-addition-total-amount outer-left-top-border">
-              Вода (общо), (g): <span>####</span>
+              Вода (общо), (g): <span class="total-water-check"></span>
             </div>
 
             <div class="outer-left-border no-top-border"></div>
@@ -1297,7 +1290,7 @@
             <!-- ############# -->
             <div class="outer-left-border">Вода':</div>
             <div class="inner-left-border comment">
-              <span>###</span>
+              <span class="initial-water-result"></span>
               <aside class="comment-box">
                 Вода за първоначално <br />
                 добавяне, (g);
@@ -1306,11 +1299,11 @@
             <div class="outer-left-border comment">
               <input
                 type="number"
-                name="waterAdditionPercent"
+                name="initialDoughHydratation"
                 class="water-addition-percent"
-                id="water-addition-input"
+                id="initial-dough-hydratation"
                 min="0"
-                max="100"
+                max="125"
                 step="1"
                 placeholder="пр.68"
               />
@@ -1322,14 +1315,14 @@
             <!-- ############# -->
             <div class="outer-left-border">Вода'':</div>
             <div class="inner-left-border comment">
-              <span>###</span>
+              <span class="secondary-water-result"></span>
               <aside class="comment-box">
                 Вода за финално <br />
                 добавяне, (g);
               </aside>
             </div>
             <div class="outer-left-border comment">
-              <span>###</span>
+              <span class="secondary-water-percent-result"></span>
               <aside class="comment-box">
                 h на тестото след финалното <br />
                 добавяне на вода;
@@ -1469,12 +1462,11 @@
       <!-- Page column III -->
       <section class="page-column">
         <form class="calc-leaven-feed" autocomplete="off">
+          <div class="card-header _leaven-feed">Подхранване на кваса</div>
           <article class="card _leaven-feed">
-            <div class="card-header _leaven-feed">Подхранване на кваса</div>
-
             <div class="card-body _leaven-feed">
               <div class="grid--2-cols">
-                <label class="grid-item bold comment" for="work-leaven">
+                <label class="grid-item bold comment" for="#">
                   Работен квас, (g):
                   <aside class="comment-box">
                     Желано количество на работния квас, (g);
@@ -1500,7 +1492,7 @@
                   h<span class="superscript">кв</span>, (%):
                 </div>
                 <div class="grid-item top-dashed">
-                  <span id="leaven-hydratation-predefined">####</span>
+                  <span class="leaven-hydratation-predefined"></span>
                 </div>
               </div>
 
@@ -1514,7 +1506,7 @@
                     и количеството Бр. за подхранване на Кв.м.
                   </aside>
                 </div>
-                <label class="grid-item bold comment" for="work-leaven">
+                <label class="grid-item bold comment" for="#">
                   Бр<span class="superscript">кв</span
                   ><span class="red-text equal-sign">&nbsp;&equals;&nbsp;</span
                   >Кв.м.
@@ -1532,12 +1524,12 @@
                     <span style="color: red">К</span> ;
                   </aside>
                 </label>
-                <div class="grid-item">
+                <div class="grid-item inp">
                   <input
                     type="number"
-                    name="workLeaven"
+                    name="feedRatio"
                     class="work-leaven"
-                    id="work-leaven"
+                    id="feed-ratio"
                     min="0"
                     max="100    "
                     step="0.1"
@@ -1566,7 +1558,7 @@
                   </aside>
                 </div>
                 <div class="grid-item feed-mother _1">
-                  <span id="feed-mother-1">###</span>
+                  <span class="feed-mother _1"></span>
                 </div>
 
                 <div class="grid-item comment">
@@ -1576,7 +1568,7 @@
                   </aside>
                 </div>
                 <div class="grid-item feed-flour _1">
-                  <span id="feed-flour-1">###</span>
+                  <span class="feed-flour _1"></span>
                 </div>
 
                 <div class="grid-item comment">
@@ -1586,14 +1578,14 @@
                   </aside>
                 </div>
                 <div class="grid-item feed-water _1">
-                  <span id="feed-water-1">###</span>
+                  <span class="feed-water _1"></span>
                 </div>
 
                 <div class="grid-item">
                   <span class="underline">Общо</span>:
                 </div>
                 <div class="grid-item feed-total _1">
-                  <span id="feed-total-1">###</span>
+                  <span class="feed-total _1"></span>
                 </div>
               </div>
 
@@ -1619,28 +1611,28 @@
                   </aside>
                 </div>
                 <div class="grid-item feed-mother _2">
-                  <span id="feed-mother-2">###</span>
+                  <span class="feed-mother _2"></span>
                 </div>
 
                 <div class="grid-item">
                   бр<span class="superscript">п</span>, (g)
                 </div>
                 <div class="grid-item feed-flour _2">
-                  <span id="feed-flour-2">###</span>
+                  <span class="feed-flour _2"></span>
                 </div>
 
                 <div class="grid-item">
                   в<span class="superscript">п</span>, (g)
                 </div>
                 <div class="grid-item feed-water _2">
-                  <span id="feed-water-2">###</span>
+                  <span class="feed-water _2"></span>
                 </div>
 
                 <div class="grid-item">
                   <span class="underline">Общо</span>:
                 </div>
                 <div class="grid-item feed-total _2">
-                  <span id="feed-total-2">###</span>
+                  <span class="feed-total _2"></span>
                 </div>
               </div>
 
@@ -1648,10 +1640,12 @@
                 <div class="grid-item"></div>
                 <div class="grid-item">
                   <div class="explained">
-                    <div>=</div>
-                    <div><span id="explained-A">###</span></div>
-                    <div>+</div>
-                    <div><span id="explained-B">###</span></div>
+                    <div class="explained _equals"></div>
+                    <!-- <div class="explained _equals">&equals;</div> -->
+                    <div><span class="explained _A"></span></div>
+                    <div class="explained _plus"></div>
+                    <!-- <div class="explained _plus">&plus;</div> -->
+                    <div><span class="explained _B"></span></div>
                   </div>
                 </div>
               </div>

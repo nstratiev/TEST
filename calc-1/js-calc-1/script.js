@@ -6,45 +6,42 @@ document.addEventListener('DOMContentLoaded', function () {
   getLocaleStorageIngredients();
   calculateAdditionalFlours();
   calculateAdditionalIngredients();
+  getLocalStorageCorrections();
+  calculateHydrIncrement();
+  calculateHydrDecrement();
+  getLocalStorageWater();
+  calcWater();
+  getLocalStorageLeaven();
+  calcLeaven();
+});
+
+// -- Submit form listeners
+formMain.addEventListener('submit', () => {
+  console.log('ABCD');
+  resetMainPrimaryResults();
+  resetMainSecondaryResults();
+  // calcMainSubmit();
 });
 
 // -- Focusout input listeners
-for (const field of numberFieldsMain) {
-  field.addEventListener('focusout', (e) => {
-    const min = e.target.min;
-    const max = e.target.max;
-    const isRequired = e.target.required;
-    onFocusOutValidation(e.target, min, max, isRequired);
-  });
-}
+addOnFocusOutInputsListener(numberFieldsMain);
+addOnFocusOutInputsListener(numberFieldsFlours);
+addOnFocusOutInputsListener(numberFieldsIngredients);
+addOnFocusOutInputsListener(numberFieldsCorrections);
+addOnFocusOutInputsListener(numberFieldsWater);
+addOnFocusOutInputsListener(numberFieldsLeaven);
 
-for (const field of numberFieldsFlours) {
-  field.addEventListener('focusout', (e) => {
-    const min = e.target.min;
-    const max = e.target.max;
-    const isRequired = e.target.required;
-    onFocusOutValidation(e.target, min, max, isRequired);
-  });
-}
-
-for (const field of numberFieldsIngredients) {
-  field.addEventListener('focusout', (e) => {
-    const min = e.target.min;
-    const max = e.target.max;
-    const isRequired = e.target.required;
-    onFocusOutValidation(e.target, min, max, isRequired);
-  });
-}
+// -- OnInput input listeners
+numberFieldsMain[1].addEventListener('input', () => {
+  leavenHydrPredifinedResultElem.textContent = numberFieldsMain[1].value;
+});
 
 // -- Button-to-top listeners
 window.addEventListener('scroll', onScreenScroll);
 btnToTop.addEventListener('click', goToScreenTop);
 // -- Buttons - global
 btnGlobalReset.addEventListener('click', resetGlobalLocalStorage);
-btnGlobalSave.addEventListener('click', () => {
-  setGlobalLocalStorage();
-  temporaryOnClickAlert('&check;', 400, 'green');
-});
+btnGlobalSave.addEventListener('click', setGlobalLocalStorage);
 
 // -- Buttons listeners
 document.addEventListener('click', (e) => {
@@ -61,42 +58,82 @@ document.addEventListener('click', (e) => {
       calcMainSubmit();
     } else if (btnClassName === 'btn-reset') {
       resetMainForm();
-      temporaryOnClickAlert('&check;', 400, 'green');
+      checkmarkAlertGreen();
     } else if (btnClassName === 'btn-save') {
       setLocaleStorageMain();
-      temporaryOnClickAlert('&check;', 400, 'green');
+      checkmarkAlertGreen();
     }
   } else if (btnsGroupClassName.includes('_flours')) {
     // console.log('FLOURS');
     if (btnClassName === 'btn-submit') {
       calcFloursAndIngredientsSubmit();
     } else if (btnClassName === 'btn-reset') {
-      resetFloursInputs();
-      temporaryOnClickAlert('&check;', 400, 'green');
+      resetFloursForm();
+      checkmarkAlertGreen();
     } else if (btnClassName === 'btn-save') {
       setLocalStorageFloursAndIngredients();
-      temporaryOnClickAlert('&check;', 400, 'green');
+      checkmarkAlertGreen();
     }
   } else if (btnsGroupClassName.includes('_corrections')) {
     // console.log('CORRECTIONS');
+    if (btnClassName === 'btn-submit') {
+      calculateCorrections();
+    } else if (btnClassName === 'btn-reset') {
+      resetCorrectionsForm();
+      checkmarkAlertGreen();
+    } else if (btnClassName === 'btn-save') {
+      setLocalStorageCorrections();
+      checkmarkAlertGreen();
+    }
   } else if (btnsGroupClassName.includes('_water')) {
     // console.log('WATER');
+    if (btnClassName === 'btn-submit') {
+      calculateWaterSubmit();
+    } else if (btnClassName === 'btn-reset') {
+      resetWaterForm();
+      checkmarkAlertGreen();
+    } else if (btnClassName === 'btn-save') {
+      setLocalStorageWater();
+      checkmarkAlertGreen();
+    }
   } else if (btnsGroupClassName.includes('_leaven-feed')) {
     // console.log('LEAVEN FEED');
+    if (btnClassName === 'btn-submit') {
+      calculateLeavenSubmit();
+    } else if (btnClassName === 'btn-reset') {
+      resetLeavenForm();
+      checkmarkAlertGreen();
+    } else if (btnClassName === 'btn-save') {
+      setLocalStorageLeaven();
+      checkmarkAlertGreen();
+    }
   }
 });
 
 // IMPORTS
-import { calcMainSubmit, breadParamsObj } from './calcMain.js';
+import { calcMainSubmit } from './calcMain.js';
 import {
   calcFloursAndIngredientsSubmit,
   calculateAdditionalFlours,
   calculateAdditionalIngredients,
 } from './calcFlours.js';
 import {
+  calculateCorrections,
+  calculateHydrIncrement,
+  calculateHydrDecrement,
+} from './calcCorrections.js';
+
+import { calcWater, calculateWaterSubmit } from './calcWater.js';
+import { calculateLeavenSubmit, calcLeaven } from './calcLeaven.js';
+import {
   resetMainForm,
-  resetFloursInputs,
+  resetFloursForm,
   resetGlobalLocalStorage,
+  resetCorrectionsForm,
+  resetWaterForm,
+  resetLeavenForm,
+  resetMainPrimaryResults,
+  resetMainSecondaryResults,
 } from './reset.js';
 import {
   btnToTop,
@@ -105,10 +142,15 @@ import {
   numberFieldsMain,
   numberFieldsFlours,
   numberFieldsIngredients,
+  numberFieldsCorrections,
+  numberFieldsWater,
+  numberFieldsLeaven,
+  leavenHydrPredifinedResultElem,
+  formMain,
 } from './elements.js';
 
 import { onScreenScroll, goToScreenTop } from './scroll.js';
-import { onFocusOutValidation } from './validation.js';
+import { addOnFocusOutInputsListener } from './validation.js';
 import {
   setGlobalLocalStorage,
   getLocaleStorageMain,
@@ -116,5 +158,11 @@ import {
   getLocaleStorageFlours,
   getLocaleStorageIngredients,
   setLocalStorageFloursAndIngredients,
+  getLocalStorageCorrections,
+  setLocalStorageCorrections,
+  getLocalStorageWater,
+  setLocalStorageWater,
+  getLocalStorageLeaven,
+  setLocalStorageLeaven,
 } from './storage.js';
-import { temporaryOnClickAlert } from './alerts.js';
+import { checkmarkAlertGreen } from './alerts.js';

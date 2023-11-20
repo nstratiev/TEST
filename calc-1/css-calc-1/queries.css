@@ -26,6 +26,10 @@
   .page-column:last-child {
     border-right: 1px solid var(--grey-bg);
   }
+
+  .comment-box {
+    margin: 5px;
+  }
 }
 
 @media (max-width: 680px) {
@@ -36,6 +40,34 @@
   .page-column {
     border: none;
     border-bottom: 1px solid var(--grey-bg) !important;
+  }
+
+  .page-column:nth-of-type(1) {
+    padding-bottom: 0;
+  }
+
+  .page-column:nth-of-type(2) {
+    padding-top: 5px;
+    padding-bottom: 0;
+  }
+
+  .page-column:last-child {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  hr {
+    margin-top: 15px;
+    /* margin-bottom: 10px; */
+  }
+
+  .calc-water {
+    padding-top: 5px;
+  }
+
+  .legend-card {
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 
   /* .btns-container {
@@ -78,6 +110,13 @@
   .right-dotted.result-secondary {
     border-left: 2px dotted black;
   }
+
+  .feed-mother,
+  .feed-flour,
+  .feed-water,
+  .feed-total {
+    height: 20px;
+  }
 }
 
 @media (max-width: 370px) {
@@ -98,6 +137,10 @@
 }
 
 @media (max-width: 300px) {
+  .card-flours-row {
+    grid-template-columns: 1fr;
+  }
+
   .card-flours-cell._1a._top {
     border: none;
   }

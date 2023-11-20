@@ -50,13 +50,15 @@
 }
 
 .comment-box {
+  max-width: 300px;
   visibility: hidden;
   position: fixed;
   top: 0;
   left: 0;
-  margin: 5px 5px 0 5px;
+  /* margin: 5px 5px 0 5px; */
+  margin: 10px 20px;
 
-  border: 2px solid red;
+  border: 2px solid rgb(192, 0, 0);
   border-radius: 6px;
   padding: 10px;
   background-color: lightgoldenrodyellow;
