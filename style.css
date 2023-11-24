@@ -8,16 +8,20 @@
   cursor: pointer;
 }
 
+.btn:hover {
+  border: 1px solid black;
+}
+
 .btn:active {
   border: 1px solid green;
   background-color: white;
   color: green;
 }
 
-@media (hover: none) {
+/* @media (hover: none) {
   .btn:active {
     border: 1px solid green;
     background-color: white;
     color: green;
   }
-}
+} */
