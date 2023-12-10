@@ -1,34 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bg-BG">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=0.1"
-    />
-    <title>Hover: TEST</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Православен календар</title>
+    <link rel="stylesheet" href="calendar/css/style.css" />
   </head>
-  <body>
-    <form>
-      <p>
-        <input type="text" class="text-field" />
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Et tempora
-        cupiditate ut optio reiciendis eum explicabo veritatis libero! Vitae
-        corporis eum alias cum! Delectus repudiandae recusandae rerum error, ab
-        consequuntur quidem omnis.
-      </p>
-      <p>
-        <button type="button" class="btn-click">Click</button>
-      </p>
-      <p>
-        <button type="button" class="btn-send">Click</button>
-      </p>
-    </form>
 
-    <p class="output"></p>
-    <script src="script.js"></script>
+  <body>
+    <header>
+      <h1 id="page-start">Православен календар</h1>
+      <h2 id="year-heading"></h2>
+
+      <form>
+        <div class="input-row">
+          <label for="year-selection">Година: </label>
+          <select name="year-selection" id="year-selection">
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+          </select>
+        </div>
+
+        <div class="input-row">
+          <label for="month-selection">Месец: </label>
+          <select name="month-selection" id="month-selection">
+            <option value="Jan">ЯНУАРИ</option>
+            <option value="Feb">ФЕВРУАРИ</option>
+            <option value="Mar">МАРТ</option>
+            <option value="Apr">АПРИЛ</option>
+            <option value="May">МАЙ</option>
+            <option value="Jun">ЮНИ</option>
+            <option value="Jul">ЮЛИ</option>
+            <option value="Aug">АВГУСТ</option>
+            <option value="Sep">СЕПТЕМВРИ</option>
+            <option value="Oct">ОКТОМВРИ</option>
+            <option value="Nov">НОЕМВРИ</option>
+            <option value="Dec">ДЕКЕМВРИ</option>
+          </select>
+        </div>
+
+        <button class="btn" id="select-calendar-btn" type="button">
+          Покажи
+        </button>
+      </form>
+
+      <h3 id="month-heading"></h3>
+    </header>
+
+    <main></main>
+
+    <footer>
+      Източник:
+      <a href="https://bg-patriarshia.bg/calendar"
+        >Българска Патриаршия: Българска Православна Църква</a
+      >
+    </footer>
+
+    <script type="module" src="calendar/js/script.js"></script>
   </body>
 </html>
