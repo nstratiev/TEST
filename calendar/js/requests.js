@@ -1,7 +1,7 @@
 // Requests
 export async function getCalendarRequest(year) {
   try {
-    const res = await fetch(`/calendar/data/${year}.json`);
+    const res = await fetch(`/test/calendar/data/${year}.json`);
     const calendar = await res.json();
 
     return calendar;
