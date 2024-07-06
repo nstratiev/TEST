@@ -4,19 +4,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test page</title>
+  <title>HTML form + modalBox - Demo</title>
+  <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
+  <h1>HTML form + modalBox - Demo</h1>
+
+  <form id="form-main" name="formMain" action="">
+    <p>
+      <label for="integer-fMain">
+        Integer:
+      </label>
+      <input id="integer-fMain" name="integer" type="number" step="1" min="0" max="8.0" placeholder="ex. ... 4"
+        autofocus required>
+    </p>
+    <p>
+      <label for="decimal-fMain">
+        Decimal:
+      </label>
+      <input id="decimal-fMain" name="decimal" type="number" step="0.1" min="0.0" max="0.9" placeholder="ex. ... 0.1"
+        required>
+    </p>
+    <p>
+      <label for="unit-fMain">
+        Unit:
+      </label>
+      <input id="unit-fMain" name="unit" type="text" placeholder="ex. ... kg">
+    </p>
+    <button id="btn-submit-fMain" type="submit">Submit</button>
+    <button id="btn-reset-fMain" type="reset">Reset</button>
+    <button id="btn-save-fMain" type="button">Save</button>
+  </form>
+
+  <h2>The sum is equal to: <span id="result-container">#####</span></h2>
+
   <p>
-    <a href="sourdough/">https://nstratiev.github.io/bread-calculator-bg/sourdough</a>
+    <button id="btn-reset-global" type="button">Global Reset</button>
   </p>
-  <p>
-    <a href="yeast/">https://nstratiev.github.io/bread-calculator-bg/yeast</a>
-  </p>
-  <p>
-    <a href="banica/">https://nstratiev.github.io/bread-calculator-bg/banica</a>
-  </p>
+
+  <div id="modal" class="flex">
+    <div>
+      <p>Modal Box</p>
+      <p>Person info received!</p>
+      <button id="btn-modal" type="button">OK</button>
+    </div>
+  </div>
+
+  <script type="module" src="js/index.js"></script>
 </body>
 
 </html>
