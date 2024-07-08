@@ -1,16 +1,23 @@
 // ##### Reset #####
-export function onReset_fMain(autofocusBool) {
-  formMain.reset();
+export function resetResults_fMain() {
   resultElem_fMain.textContent = '#####';
-  resetOutline_fMain();
+}
+
+export function onReset_fMain(ev, autofocusBool) {
+  formMain.reset();
+  resetFieldsOutline(formMain);
+
+  resetResults_fMain();
 
   if (autofocusBool === true) {
     autofocusedInputElem.focus();
   }
 }
 
-function resetOutline_fMain() {
-  for (const field of allNumberInputs_fMain) {
+function resetFieldsOutline(formElem) {
+  const formInputsCollection = formElem.querySelectorAll('input');
+
+  for (const field of formInputsCollection) {
     field.style.outline = 'none';
   }
 }
@@ -19,11 +26,11 @@ export function onGlobalReset() {
   const confirmed = confirm('Global reset cannot be reverted!\nAre you sure?');
 
   if (confirmed) {
-    clearLocalStorage();
+    clearLocalStorageGlobal();
     onReset_fMain();
   }
 }
 
 
-import { allNumberInputs_fMain, autofocusedInputElem, formMain, resultElem_fMain } from "./elements.js";
-import { clearLocalStorage } from './storage.js';
+import { autofocusedInputElem, formMain, resultElem_fMain } from "./elements.js";
+import { clearLocalStorageGlobal } from './storage.js';

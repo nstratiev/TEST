@@ -8,11 +8,11 @@ export function gettLocalStorageObj(formName) {
   return obj;
 }
 
-function clearLocalStorageObj(formName) {
+function deleteLocalStorageObj(formName) {
   localStorage.removeItem(formName);
 }
 
-export function clearLocalStorage() {
+export function clearLocalStorageGlobal() {
   localStorage.clear();
 }
 
@@ -25,6 +25,7 @@ export function populateLocaleStorageData(formElem) {
   }
 
   for (const key in localStorageObj) {
+    // const target = formElem[key];
     const target = formElem.querySelector(`input[name=${key}]`);
     target.value = localStorageObj[key];
   }

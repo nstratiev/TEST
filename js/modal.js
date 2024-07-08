@@ -10,9 +10,10 @@ export function hideModal() {
   enableForm(formMain);
 }
 
-export function onModalConfirm() {
+export function onModalConfirm(formElem) {
   hideModal();
-  autofocusedInputElem.focus();
+  formElem.focus();
+  // autofocusedInputElem.focus();
 }
 
 

@@ -7,8 +7,8 @@ export const formMain = document.querySelector('#form-main');
 export const autofocusedInputElem = document.querySelector('input[autofocus]');
 
 // All inputs
-export const allInputs_fMain = formMain.querySelectorAll('input');
-export const allNumberInputs_fMain = formMain.querySelectorAll('input[type=number]');
+// export const allInputs_fMain = formMain.querySelectorAll('input');
+// export const allNumberInputs_fMain = formMain.querySelectorAll('input[type=number]');
 
 // -- Results
 export const resultElem_fMain = document.querySelector('#result-container');

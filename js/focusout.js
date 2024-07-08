@@ -1,6 +1,8 @@
 // Focusout validation
-export function attachFocusoutValidation(allInputs_fMain) {
-  for (const field of allInputs_fMain) {
+export function attachFocusoutValidation(formElem) {
+  const formInputsCollection = formElem.querySelectorAll('input');
+
+  for (const field of formInputsCollection) {
     field.addEventListener('focusout', () => focusoutEmptyFieldValidation(field));
     field.addEventListener('focusout', () => focusoutOutOfRangeValidation(field));
   }
@@ -25,13 +27,15 @@ function focusoutOutOfRangeValidation(currentField) {
 }
 
 function focusoutEmptyFieldValidation(currentField) {
-  if (currentField.required === true) {
-    if (currentField.value === '') {
-      currentField.style.outline = '2px solid green';
-
-    } else {
-      currentField.style.outline = 'none';
-    }
-
+  if (currentField.required === false) {
+    return;
   }
+
+  if (currentField.value === '') {
+    currentField.style.outline = '2px solid green';
+
+  } else {
+    currentField.style.outline = 'none';
+  }
+
 }
