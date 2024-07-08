@@ -26,7 +26,7 @@ export function onGlobalReset() {
 
   if (confirmed) {
     clearLocalStorageGlobal();
-    onReset_fMain();
+    location.reload();
   }
 }
 
