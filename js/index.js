@@ -11,7 +11,7 @@ attachFocusoutValidation(formMain);
 btnSubmit_fMain.addEventListener('click', (ev) => onSubmit_fMain(ev, {}));
 btnReset_fMain.addEventListener('click', (ev) => onReset_fMain(ev, false));
 btnSave_fMain.addEventListener('click', () => onSave_fMain(formMain));
-btnModal.addEventListener('click', () => onModalConfirm(formMain));
+btnModal.addEventListener('click', (ev) => onModalConfirm(ev, btnSubmit_fMain));
 btnGlobalReset.addEventListener('click', onGlobalReset);
 
 

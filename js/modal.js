@@ -10,12 +10,11 @@ export function hideModal() {
   enableForm(formMain);
 }
 
-export function onModalConfirm(formElem) {
+export function onModalConfirm(ev, btnAfterFocus) {
   hideModal();
-  formElem.focus();
-  // autofocusedInputElem.focus();
+  btnAfterFocus.focus();
 }
 
 
-import { autofocusedInputElem, btnModal, formMain, modalBoxElem } from './elements.js';
+import { btnModal, formMain, modalBoxElem } from './elements.js';
 import { disableForm, enableForm } from "./generic.js";

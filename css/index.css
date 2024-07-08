@@ -33,6 +33,7 @@ input:focus {
 #modal > div {
   background-color: white;
   border: 2px solid green;
+  border-radius: 5px;
   padding: 40px;
 
 }
@@ -41,4 +42,16 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.checkmark {
+  width: 40px;
+  height: 40px;
+  border: 2px solid green;
+  border-radius: 50% 50%;
+  margin: 10px;
+  padding: 10px;
+  color: green;
+  font-size: 120%;
+  font-weight: bold;
 }
