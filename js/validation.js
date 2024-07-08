@@ -1,5 +1,4 @@
 // Validation
-
 export function validationOutOfRangeFields(formFieldsArr, pageLoadingObj) {
   for (const item of formFieldsArr) {
     if (item.type !== 'number') {

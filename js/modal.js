@@ -1,5 +1,9 @@
 // Modal functions
-export function showModal() {
+let modalActivatorElem = null;
+
+export function showModal(ev) {
+  modalActivatorElem = ev.target;
+
   modalBoxElem.style.display = 'flex';
   disableForm(formMain);
   btnModal.focus();
@@ -10,11 +14,12 @@ export function hideModal() {
   enableForm(formMain);
 }
 
-export function onModalConfirm(ev, btnAfterFocus) {
+export function onModalConfirm() {
   hideModal();
-  btnAfterFocus.focus();
+  modalActivatorElem.focus();
 }
 
 
+// import { modalActivatorElem } from "./index.js";
 import { btnModal, formMain, modalBoxElem } from './elements.js';
 import { disableForm, enableForm } from "./generic.js";

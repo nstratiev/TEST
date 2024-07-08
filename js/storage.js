@@ -8,25 +8,29 @@ export function gettLocalStorageObj(formName) {
   return obj;
 }
 
-function deleteLocalStorageObj(formName) {
-  localStorage.removeItem(formName);
-}
-
 export function clearLocalStorageGlobal() {
   localStorage.clear();
 }
 
-export function populateLocaleStorageData(formElem) {
-  const localStorageObj = gettLocalStorageObj(formElem.name);
+export function populateLocaleStorageData(formsArr) {
+  for (const formElem of formsArr) {
+    const localStorageObj = gettLocalStorageObj(formElem.name);
 
-  if (localStorageObj === null) {
-    console.log('No localStorage for this form ...');
-    return null;
+    if (localStorageObj === null) {
+      console.info('No localStorage for this form ...');
+      return null;
+    }
+
+    for (const key in localStorageObj) {
+      // const target = formElem[key];
+      const target = formElem.querySelector(`input[name=${key}]`);
+      target.value = localStorageObj[key];
+    }
+
   }
 
-  for (const key in localStorageObj) {
-    // const target = formElem[key];
-    const target = formElem.querySelector(`input[name=${key}]`);
-    target.value = localStorageObj[key];
-  }
+}
+
+function deleteLocalStorageObj(formName) {
+  localStorage.removeItem(formName);
 }

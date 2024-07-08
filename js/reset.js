@@ -1,17 +1,16 @@
 // ##### Reset #####
+export function onReset_fMain() {
+  onReset(null, formMain, resetResults_fMain);
+}
+
 export function resetResults_fMain() {
   resultElem_fMain.textContent = '#####';
 }
 
-export function onReset_fMain(ev, autofocusBool) {
-  formMain.reset();
-  resetFieldsOutline(formMain);
-
-  resetResults_fMain();
-
-  if (autofocusBool === true) {
-    autofocusedInputElem.focus();
-  }
+function onReset(ev, formElem, resetResultHandler) {
+  formElem.reset();
+  resetFieldsOutline(formElem);
+  resetResultHandler();
 }
 
 function resetFieldsOutline(formElem) {
@@ -32,5 +31,6 @@ export function onGlobalReset() {
 }
 
 
-import { autofocusedInputElem, formMain, resultElem_fMain } from "./elements.js";
+import { formMain } from './elements.js';
+import { resultElem_fMain } from "./elements.js";
 import { clearLocalStorageGlobal } from './storage.js';

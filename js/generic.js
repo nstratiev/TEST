@@ -22,7 +22,7 @@ export function getFormInputsDataObj(formElem) {
   return dataObj;
 }
 
-export function getData_formMain(formElem, pageLoadingObj) {
+export function getData(formElem, pageLoadingObj) {
   if (validationEmptyFields(formElem.elements, pageLoadingObj) === false) {
     return false;
   }
@@ -61,5 +61,6 @@ function toggleDisableEnableFormButtons(formElem, bool) {
     btn.disabled = bool;
   }
 }
+
 
 import { validationEmptyFields, validationOutOfRangeFields } from './validation.js';
