@@ -1,4 +1,3 @@
-// Focusout validation
 export function attachFocusoutValidation(formElem) {
   const formInputsCollection = formElem.querySelectorAll('input');
 

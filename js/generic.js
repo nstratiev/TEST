@@ -1,5 +1,3 @@
-// ##### Generic functions #####
-
 export function getFormInputsDataObj(formElem) {
   const formInputsCollection = formElem.querySelectorAll('input');
 

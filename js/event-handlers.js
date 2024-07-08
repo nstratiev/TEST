@@ -1,4 +1,3 @@
-// Event handlers
 export function onSubmit_initialLoad(ev) {
   onSubmit(ev, formMain, { isFirstPageLoad: true }, printResult_formMain);
 }

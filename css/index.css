@@ -44,6 +44,19 @@ input:focus {
   align-items: center;
 }
 
+h1, h3 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.version {
+  display: inline-block;
+  padding: 4px;
+  border-radius: 5px;
+  background-color: blue;
+  color: white;
+}
+
 .checkmark {
   width: 40px;
   height: 40px;

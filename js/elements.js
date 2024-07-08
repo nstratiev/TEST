@@ -1,5 +1,3 @@
-// ##### Elements #####
-
 // -- Forms
 export const formMain = document.querySelector('#form-main');
 

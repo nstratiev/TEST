@@ -1,4 +1,3 @@
-// ##### Reset #####
 export function onReset_fMain() {
   onReset(null, formMain, resetResults_fMain);
 }
@@ -26,6 +25,7 @@ export function onGlobalReset() {
 
   if (confirmed) {
     clearLocalStorageGlobal();
+    formMain.reset();
     location.reload();
   }
 }

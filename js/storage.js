@@ -3,7 +3,7 @@ export function setLocalStorageObj(obj, formName) {
   localStorage.setItem(formName, stringData);
 }
 
-export function gettLocalStorageObj(formName) {
+export function getLocalStorageObj(formName) {
   const obj = JSON.parse(localStorage.getItem(formName));
   return obj;
 }
@@ -14,7 +14,7 @@ export function clearLocalStorageGlobal() {
 
 export function populateLocaleStorageData(formsArr) {
   for (const formElem of formsArr) {
-    const localStorageObj = gettLocalStorageObj(formElem.name);
+    const localStorageObj = getLocalStorageObj(formElem.name);
 
     if (localStorageObj === null) {
       console.info('No localStorage for this form ...');
@@ -22,8 +22,8 @@ export function populateLocaleStorageData(formsArr) {
     }
 
     for (const key in localStorageObj) {
-      // const target = formElem[key];
-      const target = formElem.querySelector(`input[name=${key}]`);
+      const target = formElem[key];
+      // const target = formElem.querySelector(`input[name=${key}]`);
       target.value = localStorageObj[key];
     }
 

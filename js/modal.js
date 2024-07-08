@@ -1,4 +1,3 @@
-// Modal functions
 let modalActivatorElem = null;
 
 export function showModal(ev) {
