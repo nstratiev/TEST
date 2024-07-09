@@ -20,12 +20,12 @@ export function getFormInputsDataObj(formElem) {
   return dataObj;
 }
 
-export function getData(formElem, pageLoadingObj) {
-  if (validationEmptyFields(formElem.elements, pageLoadingObj) === false) {
+export function getData(formElem, pageLoadingObj, resetResultFunc) {
+  if (validationEmptyFields(formElem.elements, pageLoadingObj, resetResultFunc) === false) {
     return false;
   }
 
-  if (validationOutOfRangeFields(formElem.elements, pageLoadingObj) === false) {
+  if (validationOutOfRangeFields(formElem.elements, pageLoadingObj, resetResultFunc) === false) {
     return false;
   }
 
@@ -35,29 +35,21 @@ export function getData(formElem, pageLoadingObj) {
 
 // -- Form disable
 export function disableForm(formElem) {
-  toggleDisableEnableFormInputs(formElem, true);
-  toggleDisableEnableFormButtons(formElem, true);
+  toggleEnableDisableFormInputs_js(formElem, true);
 }
 
 export function enableForm(formElem) {
-  toggleDisableEnableFormInputs(formElem, false);
-  toggleDisableEnableFormButtons(formElem, false);
+  toggleEnableDisableFormInputs_js(formElem, false);
 }
 
-function toggleDisableEnableFormInputs(formElem, bool) {
-  const allInputs = formElem.querySelectorAll('input');
-
-  for (const input of allInputs) {
-    input.disabled = bool;
+function toggleEnableDisableFormInputs_js(formElem, bool) {
+  for (const el of formElem.elements) {
+    el.disabled = bool;
   }
 }
 
-function toggleDisableEnableFormButtons(formElem, bool) {
-  const allButtons = formElem.querySelectorAll('button');
-
-  for (const btn of allButtons) {
-    btn.disabled = bool;
-  }
+function toggleEnableDisableFormInputs_fieldset(fieldsetElem, bool) {
+  fieldsetElem.disabled = bool;
 }
 
 

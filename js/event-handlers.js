@@ -3,15 +3,15 @@ export function onSubmit_initialLoad(ev) {
 }
 
 export function onSubmit_fMain(ev) {
-  onSubmit(ev, formMain, { isFirstPageLoad: false }, printResult_formMain);
+  onSubmit(ev, formMain, { isFirstPageLoad: false }, printResult_formMain, resetResults_fMain);
 }
 
-function onSubmit(ev, formElem, loadingConfig, printFunc) {
+function onSubmit(ev, formElem, loadingConfig, printFunc, resetResultFunc) {
   if (loadingConfig.isFirstPageLoad !== true) {
     ev.preventDefault();
   }
 
-  const dataObj = getData(formElem, loadingConfig);
+  const dataObj = getData(formElem, loadingConfig, resetResultFunc);
 
   if (dataObj === false) {
     return;
@@ -42,3 +42,4 @@ import { showModal } from './modal.js';
 import { formMain } from './elements.js';
 import { getData, getFormInputsDataObj } from './generic.js';
 import { setLocalStorageObj } from './storage.js';
+import { resetResults_fMain } from './reset.js';

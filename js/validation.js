@@ -1,4 +1,4 @@
-export function validationOutOfRangeFields(formFieldsArr, pageLoadingObj) {
+export function validationOutOfRangeFields(formFieldsArr, pageLoadingObj, resetResultFunc) {
   for (const item of formFieldsArr) {
     if (item.type !== 'number') {
       continue;
@@ -10,7 +10,7 @@ export function validationOutOfRangeFields(formFieldsArr, pageLoadingObj) {
 
     if (num < minLimit || num > maxLimit) {
       if (pageLoadingObj.isFirstPageLoad !== true) {
-        resetResults_fMain();
+        resetResultFunc();
         item.focus();
 
         setTimeout(() => {
@@ -26,7 +26,7 @@ export function validationOutOfRangeFields(formFieldsArr, pageLoadingObj) {
   return true;
 }
 
-export function validationEmptyFields(formFieldsArr, pageLoadingObj) {
+export function validationEmptyFields(formFieldsArr, pageLoadingObj, resetResultFunc) {
   for (const item of formFieldsArr) {
     if (item.tagName !== 'INPUT' || item.required === false) {
       continue;
@@ -34,7 +34,7 @@ export function validationEmptyFields(formFieldsArr, pageLoadingObj) {
 
     if (item.value === '') {
       if (pageLoadingObj.isFirstPageLoad !== true) {
-        resetResults_fMain();
+        resetResultFunc();
         item.focus();
 
         setTimeout(() => {

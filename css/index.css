@@ -51,9 +51,9 @@ h1, h3 {
 
 .version {
   display: inline-block;
-  padding: 4px;
+  padding: 4px 8px;
   border-radius: 5px;
-  background-color: blue;
+  background-color: steelblue;
   color: white;
 }
 
