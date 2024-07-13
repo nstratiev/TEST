@@ -2,16 +2,18 @@
   "name": "test",
   "version": "1.0.0",
   "description": "Калкулатор за замесване на тесто за баница",
-  "main": "index.js",
+  "source": "index.html",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build", 
-    "preview": "vite preview"
+    "start": "parcel index.html",
+    "build": "parcel build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "vite": "^5.3.3"
+    "gh-pages": "^6.1.1",
+    "parcel": "^2.12.0"
   }
 }
