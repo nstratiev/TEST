@@ -1,0 +1,20 @@
+@media (width <= 1200px) {
+  .--grid-3-cols {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  footer.page {
+    margin-top: 20px;
+  }
+}
+
+@media (width <= 680px) {
+  .--grid-3-cols {
+    grid-template-columns: 1fr;
+  }
+
+  hr {
+    margin-bottom: 60px;
+  }
+}
+/*# sourceMappingURL=index.9ca9c5fb.css.map */
