@@ -237,10 +237,22 @@ a.legend-link:link, a.legend-link:visited {
   }
 }
 
-footer > a:link, footer > a:visited {
+footer > a:link, footer > a:visited,
+a.offline-link:link, a.offline-link:visited,
+a.github-link:link, a.github-link:visited {
   color: #366092;
-  padding: 20px 40px;
   font-size: 18px;
   font-weight: bold;
 }
+
+footer > a:link, footer > a:visited {
+  padding: 20px 40px;
+}
+
+a.legend-link:link, a.legend-link:visited,
+a.offline-link:link, a.offline-link:visited,
+a.github-link:link, a.github-link:visited {
+  margin-right: 20px;
+}
+
 /*# sourceMappingURL=index.e9a92ad8.css.map */
