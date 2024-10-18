@@ -2,9 +2,13 @@
 
 // On first page load
 document.addEventListener('DOMContentLoaded', (ev) => {
+  printCurrentVersion(versionElem);
+  console.log(versionElem);
+
   populateLocaleStorageData([formMain]);
   onSubmit_initialLoad(ev);
-  printCurrentVersion();
+
+
 });
 
 // -- Button-to-top listeners
@@ -47,7 +51,7 @@ document.addEventListener('click', (ev) => {
 });
 
 
-import { btnGlobalReset, btnGlobalSave, btnPredefinedValues, btnToTop, formMain } from './elements.js';
+import { btnGlobalReset, btnGlobalSave, btnPredefinedValues, btnToTop, formMain, versionElem } from './elements.js';
 import { onGlobalSave, onSave_fMain, onSubmit_fMain, onSubmit_initialLoad, populatePredefinedValues_fMain } from './event-handlers.js';
 import { attachFocusoutValidation } from './focusout.js';
 import { populateLocaleStorageData } from './storage.js';

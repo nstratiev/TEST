@@ -1,4 +1,6 @@
 // ##### Elements [Start] #####
+export const versionElem = document.querySelector('#version');
+
 // -- Forms
 export const formMain = document.querySelector('#form-main');
 

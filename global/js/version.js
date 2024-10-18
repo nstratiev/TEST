@@ -1,8 +1,7 @@
-export function printCurrentVersion() {
-  printCalculatorVersion('0.9');
+export function printCurrentVersion(versionElem) {
+  printCalculatorVersion(versionElem, '0.9');
 }
 
-function printCalculatorVersion(calculatorVersion) {
-  const versionElem = document.querySelector('#version');
+function printCalculatorVersion(versionElem, calculatorVersion) {
   versionElem.textContent = calculatorVersion;
 }
