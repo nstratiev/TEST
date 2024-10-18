@@ -53,6 +53,6 @@ import { populateLocaleStorageData } from './storage.js';
 import { onGlobalReset, onReset_fMain } from './reset.js';
 import { goToScreenTop, onScreenScroll } from "./scroll.js";
 import { attachOnFocusoutDecimalPointValidation } from './validation.js';
-import { printCurrentVersion } from '../../_global/js/version.js';
+import { printCurrentVersion } from '../../global/js/version.js';
 
 // ##### Index [End] #####
