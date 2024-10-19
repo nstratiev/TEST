@@ -270,4 +270,10 @@ input[type="number"] {
   z-index: 32;
 }
 
+.favicon-link:link,
+.favicon-link:visited {
+  font-size: 80%;
+  font-style: italic;
+}
+
 /* ##### Index [End] ##### */
