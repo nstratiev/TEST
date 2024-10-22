@@ -1,12 +1,21 @@
 // ##### Storage [Start] #####
-export function setLocalStorage(obj, formName) {
-  const jsonData = JSON.stringify(obj);
-  localStorage.setItem(formName, jsonData);
+const calculatorName = 'calcProteins';
+
+export function setLocalStorage(dataObj, formName) {
+  const calculatorData = JSON.parse(localStorage.getItem(calculatorsCategory));
+
+  calculatorData[calculatorName] = {
+    [formName]: dataObj
+  };
+
+  const jsonData = JSON.stringify(calculatorData);
+  localStorage.setItem(calculatorsCategory, jsonData);
 }
 
 export function getLocalStorage(formName) {
-  const obj = JSON.parse(localStorage.getItem(formName));
-  return obj;
+  const calculatorData = JSON.parse(localStorage.getItem(calculatorsCategory));
+
+  return calculatorData[calculatorName][formName];
 }
 
 export function clearLocalStorageGlobal() {
@@ -31,5 +40,8 @@ export function populateLocaleStorageData(formsArr) {
   }
 
 }
+
+// IMPORTS
+import { calculatorsCategory } from '../../global/js/storage.js';
 
 // ##### Storage [End] #####
